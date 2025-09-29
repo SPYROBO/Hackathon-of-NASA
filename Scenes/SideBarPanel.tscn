@@ -1,0 +1,288 @@
+[gd_scene load_steps=19 format=3 uid="uid://bcm3y3dpf3rxw"]
+
+[ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="1_fe0ym"]
+[ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="1_mbdp5"]
+[ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
+[ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
+[ext_resource type="Texture2D" uid="uid://3t2uyhstpx6c" path="res://Images/BTNharvest.png" id="2_w8b3l"]
+[ext_resource type="FontFile" uid="uid://bnswds2dn3ohe" path="res://fonts/Montserrat/static/Montserrat-Bold.ttf" id="3_4op00"]
+[ext_resource type="Texture2D" uid="uid://fggaab36tl2r" path="res://Images/BTNplant.png" id="3_ekxr6"]
+[ext_resource type="FontFile" uid="uid://8gbfb778tru2" path="res://fonts/Montserrat/static/Montserrat-Medium.ttf" id="4_nve07"]
+[ext_resource type="Texture2D" uid="uid://bolwysxw8thdv" path="res://Images/BTNfumigate.png" id="4_o4nnb"]
+[ext_resource type="Texture2D" uid="uid://k5gi4yph80ha" path="res://Images/moneda.webp" id="9_lqp8s"]
+
+[sub_resource type="Theme" id="Theme_aixeg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe0ym"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7t0e"]
+content_margin_top = 7.0
+content_margin_bottom = 10.0
+bg_color = Color(0.654902, 0.8392157, 0.9607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4op00"]
+content_margin_left = 5.0
+bg_color = Color(0.654902, 0.8392157, 0.9607843, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfsap"]
+content_margin_left = 5.0
+bg_color = Color(0.98039216, 0.78039217, 0.7647059, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nve07"]
+content_margin_left = 5.0
+bg_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nve07"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyanh"]
+content_margin_right = 5.0
+bg_color = Color(0.16078432, 0.2784314, 0.3647059, 1)
+corner_radius_top_right = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 10.0
+
+[node name="SideBarPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 147.44315
+offset_bottom = 301.0462
+scale = Vector2(0.7935262, 0.8997157)
+theme = SubResource("Theme_aixeg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 298.82446
+theme_override_styles/panel = SubResource("StyleBoxFlat_fe0ym")
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -8.13453
+offset_top = 9.997844
+offset_right = 137.86546
+offset_bottom = 278.99783
+scale = Vector2(0.8772575, 1.0625669)
+pivot_offset = Vector2(135.29553, 115.75762)
+theme_override_constants/separation = 1
+
+[node name="Title" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_stretch_ratio = 15.8
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7t0e")
+
+[node name="Label" type="Label" parent="MainVBox/Title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("1_p7t0e")
+theme_override_font_sizes/font_size = 22
+text = "DATA SEEDER"
+horizontal_alignment = 1
+
+[node name="space3" type="Control" parent="MainVBox"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TabletPanel" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4op00")
+
+[node name="TabletHBox" type="HBoxContainer" parent="MainVBox/TabletPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBox/TabletPanel/TabletHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22352941, 0.21960784, 0.24313726, 1)
+theme_override_fonts/font = ExtResource("1_fe0ym")
+text = "Tablet"
+
+[node name="Control" type="Control" parent="MainVBox/TabletPanel/TabletHBox"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 20.0
+
+[node name="CheckButton" type="CheckButton" parent="MainVBox/TabletPanel/TabletHBox"]
+layout_mode = 2
+
+[node name="space2" type="Control" parent="MainVBox"]
+custom_minimum_size = Vector2(10, 5)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="MainVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22352941, 0.21960784, 0.24313726, 1)
+theme_override_fonts/font = ExtResource("2_p7t0e")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_lfsap")
+text = "Shop"
+alignment = 0
+
+[node name="space" type="Control" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Report" type="Label" parent="MainVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("3_4op00")
+theme_override_font_sizes/font_size = 11
+text = "Daily Report"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nve07")
+
+[node name="ReportVBox" type="VBoxContainer" parent="MainVBox/PanelContainer2"]
+modulate = Color(1, 0.47058824, 1, 1)
+layout_mode = 2
+
+[node name="Day" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("4_nve07")
+theme_override_font_sizes/font_size = 6
+text = "DAY:"
+
+[node name="Temp" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("4_nve07")
+theme_override_font_sizes/font_size = 6
+text = "TEMPERATURE:"
+
+[node name="Precipitation" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("4_nve07")
+theme_override_font_sizes/font_size = 6
+text = "PRECIPITATION:"
+
+[node name="Soil Moisture" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("4_nve07")
+theme_override_font_sizes/font_size = 6
+text = "SOIL MOISTURE:"
+
+[node name="ActionButtonsHBox" type="HBoxContainer" parent="MainVBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BTNwater" type="Button" parent="MainVBox/ActionButtonsHBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNwater"]
+layout_mode = 0
+offset_left = -4.358666
+offset_top = 10.589988
+offset_right = 32.94228
+offset_bottom = 41.492928
+texture_normal = ExtResource("1_mbdp5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BTNharvest" type="Button" parent="MainVBox/ActionButtonsHBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNharvest"]
+layout_mode = 0
+offset_left = 28.732067
+offset_top = 10.589985
+offset_right = 66.90383
+offset_bottom = 41.492924
+texture_normal = ExtResource("2_w8b3l")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BTNplant" type="Button" parent="MainVBox/ActionButtonsHBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNplant"]
+layout_mode = 0
+offset_left = 64.472145
+offset_top = 10.589997
+offset_right = 105.75159
+offset_bottom = 41.95381
+texture_normal = ExtResource("3_ekxr6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BTNfumigate" type="Button" parent="MainVBox/ActionButtonsHBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNfumigate"]
+layout_mode = 0
+offset_left = 101.53688
+offset_top = 10.589985
+offset_right = 141.27695
+offset_bottom = 41.9538
+texture_normal = ExtResource("4_o4nnb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="space4" type="Control" parent="MainVBox"]
+custom_minimum_size = Vector2(10, 15)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hyanh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainVBox/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_lqp8s")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("1_fe0ym")
+text = "  $100  "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "SCORE:"
+
+[node name="Label2" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "WATER USAGE:"
