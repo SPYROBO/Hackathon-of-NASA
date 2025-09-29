@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcm3y3dpf3rxw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vaag4"]
+bg_color = Color(0.89905, 0.93608826, 0.9357578, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqgcw"]
+bg_color = Color(0.23529412, 0.29411766, 0.6, 1)
+
+[node name="SideBarPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 133.0
+offset_bottom = 205.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 205.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vaag4")
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 205.0
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="MainVBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqgcw")
+text = "Orbital Farm"
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+
+[node name="TabletHBox" type="HBoxContainer" parent="MainVBox/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBox/PanelContainer/TabletHBox"]
+layout_mode = 2
+text = "Tablet"
+
+[node name="Control" type="Control" parent="MainVBox/PanelContainer/TabletHBox"]
+layout_mode = 2
+size_flags_stretch_ratio = 20.0
+
+[node name="CheckButton" type="CheckButton" parent="MainVBox/PanelContainer/TabletHBox"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 77.0
+offset_right = 97.0
+offset_bottom = 100.0
+text = "Daily Report"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 205.0
