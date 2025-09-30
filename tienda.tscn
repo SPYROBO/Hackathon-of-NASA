@@ -1,12 +1,19 @@
-[gd_scene format=3 uid="uid://f4o3l70wt6b2"]
+[gd_scene load_steps=4 format=3 uid="uid://f4o3l70wt6b2"]
+
+[ext_resource type="PackedScene" uid="uid://ddsfybcpvc7vb" path="res://Scenes/planta_tienda.tscn" id="1_k64ye"]
+[ext_resource type="Script" uid="uid://d16nvhlwixvpo" path="res://tienda.gd" id="1_ko86m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qt5ao"]
 
 [node name="Tienda" type="Node2D"]
+script = ExtResource("1_ko86m")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 118.0
 offset_top = -1.0
 offset_right = 390.0
 offset_bottom = 269.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qt5ao")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -34,3 +41,6 @@ metadata/_tab_index = 0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="PlantaTienda" parent="Panel/VBoxContainer/TabContainer/Control/GridContainer" instance=ExtResource("1_k64ye")]
+layout_mode = 2

@@ -1,5 +1,4 @@
-extends Node
-
+extends Control
 @onready var price_label = $"PanelContainer/Price"
 @onready var seed_icon = $"BoxContainer/Panel/TextureRect"
 #@onready var name_label = $"VBoxContainer/Seed Name"
@@ -13,7 +12,8 @@ var seed_data: Dictionary # Un diccionario que contendrá los datos de esta semi
 signal seed_selected(seed_id) # Para notificar a la tienda que se seleccionó una semilla
 
 func _ready():
-	buy_button.pressed.connect(_on_buy_button_pressed)
+	#buy_button.pressed.connect(_on_buy_button_pressed)
+	
 
 func setup_seed_card(data: Dictionary):
 	seed_data = data
