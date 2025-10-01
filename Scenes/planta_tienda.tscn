@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ddsfybcpvc7vb"]
 
 [ext_resource type="Script" uid="uid://cgavp6xfdajoe" path="res://Scenes/planta_tienda.gd" id="1_ay8iy"]
-[ext_resource type="Texture2D" uid="uid://c4k6ijdlmqa68" path="res://icons/morron.png" id="1_v5ytw"]
+[ext_resource type="Texture2D" uid="uid://lsh76wnjpd4y" path="res://Images/plantas/morron.png" id="2_ay8iy"]
 [ext_resource type="Texture2D" uid="uid://bp7mye8yus8n1" path="res://icons/sol.png" id="2_xarbe"]
 [ext_resource type="Texture2D" uid="uid://crmduec10tutt" path="res://icons/gota.png" id="3_kanch"]
 [ext_resource type="Texture2D" uid="uid://ktjlivmsdemw" path="res://icons/relox.png" id="4_ay8iy"]
@@ -84,9 +84,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mge5m")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer/Panel"]
 layout_mode = 0
-offset_right = 42.0
-offset_bottom = 37.0
-texture = ExtResource("1_v5ytw")
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+texture = ExtResource("2_ay8iy")
 expand_mode = 1
 
 [node name="PanelContainer" type="Panel" parent="Panel"]
