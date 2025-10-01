@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var seed_display_grid = $"Panel/VBoxContainer/TabContainer/Control/GridContainer"
-#@onready var money_label = $"Panel/VBoxContainer/HBoxContainer2/MoneyLabel" # Asegúrate de que el path sea correcto
-#@onready var close_button = $"Panel/VBoxContainer/HBoxContainer/CloseButton"
+@onready var seed_display_grid = $"Panel/VBoxContainer/Plantas/GridContainer"
+@onready var money_label = $"Panel/VBoxContainer/HBoxContainer2/MoneyLabel" # Asegúrate de que el path sea correcto
+@onready var close_button = $"Panel/VBoxContainer/HBoxContainer/CloseButton"
 #@onready var cancel_button = $"Panel/VBoxContainer/HBoxContainer2/CancelButton"
 
 var player_money = 100 # Esto debería venir del GameManager o un Singleton
@@ -10,12 +10,12 @@ var available_seeds = [] # Aquí se cargarán los datos de todas las semillas
 var selected_seed_id = "" # Si solo se puede seleccionar una por vez
 
 func _ready():
-	#close_button.pressed.connect(hide_shop)
+	close_button.pressed.connect(hide_shop)
 	#cancel_button.pressed.connect(hide_shop)
 	
-	#update_money_display()
+	update_money_display()
 	load_seed_data()
-	#populate_seed_cards()
+	populate_seed_cards()
 
 func load_seed_data():
 	# En una hackathon, un JSON file o un Array hardcodeado está bien
@@ -24,37 +24,46 @@ func load_seed_data():
 		{"id": "apple", "name": "Apple", "price": 8, "icon_path": "res://icons/morron.png", "sun_tolerance": "HIGH", "water_need": "MEDIUM", "growth_days": 5},
 		{"id": "carrot", "name": "Carrot", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "LOW", "growth_days": 3},
 		{"id": "onion", "name": "Onion", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "MEDIUM", "growth_days": 4},
+		{"id": "apple", "name": "Apple", "price": 8, "icon_path": "res://icons/morron.png", "sun_tolerance": "HIGH", "water_need": "MEDIUM", "growth_days": 5},
+		{"id": "carrot", "name": "Carrot", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "LOW", "growth_days": 3},
+		{"id": "onion", "name": "Onion", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "MEDIUM", "growth_days": 4},
+		{"id": "apple", "name": "Apple", "price": 8, "icon_path": "res://icons/morron.png", "sun_tolerance": "HIGH", "water_need": "MEDIUM", "growth_days": 5},
+		{"id": "carrot", "name": "Carrot", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "LOW", "growth_days": 3},
+		{"id": "onion", "name": "Onion", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "MEDIUM", "growth_days": 4},
+		{"id": "apple", "name": "Apple", "price": 8, "icon_path": "res://icons/morron.png", "sun_tolerance": "HIGH", "water_need": "MEDIUM", "growth_days": 5},
+		{"id": "carrot", "name": "Carrot", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "LOW", "growth_days": 3},
+		{"id": "onion", "name": "Onion", "price": 4, "icon_path": "res://icons/morron.png", "sun_tolerance": "MEDIUM", "water_need": "MEDIUM", "growth_days": 4},
 		# ... añade todas tus semillas aquí con sus paths a los íconos
 	]
 
-#func populate_seed_cards():
-	## Eliminar cualquier tarjeta existente si se recarga la tienda
-	#for child in seed_display_grid.get_children():
-		#child.queue_free()
-#
-	#var seed_card_template = load("res://scenes/SeedCard.tscn") # Cargar la escena de la tarjeta
-#
-	#for seed_data in available_seeds:
-		#var seed_card_instance = seed_card_template.instantiate()
-		#seed_display_grid.add_child(seed_card_instance)
-		#seed_card_instance.setup_seed_card(seed_data)
-		#seed_card_instance.seed_selected.connect(_on_seed_selected) # Conectar la señal
+func populate_seed_cards():
+	# Eliminar cualquier tarjeta existente si se recarga la tienda
+	for child in seed_display_grid.get_children():
+		child.queue_free()
 
-#func _on_seed_selected(seed_id: String):
-	#var selected_seed_info = get_seed_info(seed_id)
-	#if selected_seed_info:
-		#if player_money >= selected_seed_info.price:
-			#player_money -= selected_seed_info.price
-			#update_money_display()
-			#print("Comprada semilla: ", selected_seed_info.name)
-			## Aquí deberías añadir la semilla al inventario del jugador
-			## GameManager.add_seed_to_inventory(selected_seed_info)
-			#
-			## Opcional: Deshabilitar el botón de compra o cambiar su texto
-			## Si solo se pueden comprar un número limitado o una vez
-		#else:
-			#print("No tienes suficiente dinero para comprar: ", selected_seed_info.name)
-			## Mostrar un mensaje de "dinero insuficiente" al jugador
+	var seed_card_template = load("res://Scenes/planta_tienda.tscn") # Cargar la escena de la tarjeta
+
+	for seed_data in available_seeds:
+		var seed_card_instance = seed_card_template.instantiate()
+		seed_display_grid.add_child(seed_card_instance)
+		seed_card_instance.setup_seed_card(seed_data)
+		seed_card_instance.seed_selected.connect(_on_seed_selected) # Conectar la señalu
+
+func _on_seed_selected(seed_id: String):
+	var selected_seed_info = get_seed_info(seed_id)
+	if selected_seed_info:
+		if player_money >= selected_seed_info.price:
+			player_money -= selected_seed_info.price
+			update_money_display()
+			print("Comprada semilla: ", selected_seed_info.name)
+			# Aquí deberías añadir la semilla al inventario del jugador
+			# GameManager.add_seed_to_inventory(selected_seed_info)
+			
+			# Opcional: Deshabilitar el botón de compra o cambiar su texto
+			# Si solo se pueden comprar un número limitado o una vez
+		else:
+			print("No tienes suficiente dinero para comprar: ", selected_seed_info.name)
+			# Mostrar un mensaje de "dinero insuficiente" al jugador
 			
 func get_seed_info(seed_id: String) -> Dictionary:
 	for seed in available_seeds:
@@ -62,8 +71,8 @@ func get_seed_info(seed_id: String) -> Dictionary:
 			return seed
 	return {}
 
-#func update_money_display():
-	#money_label.text = "$" + str(player_money)
+func update_money_display():
+	money_label.text = "$" + str(player_money)
 
 func show_shop():
 	self.show() # Mostrar el nodo de la tienda

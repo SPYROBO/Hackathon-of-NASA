@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddsfybcpvc7vb"]
+[gd_scene load_steps=12 format=3 uid="uid://ddsfybcpvc7vb"]
 
 [ext_resource type="Script" uid="uid://cgavp6xfdajoe" path="res://Scenes/planta_tienda.gd" id="1_ay8iy"]
 [ext_resource type="Texture2D" uid="uid://c4k6ijdlmqa68" path="res://icons/morron.png" id="1_v5ytw"]
@@ -36,6 +36,9 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay8iy"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kanch"]
 bg_color = Color(0.25500003, 0.85, 0.29466665, 1)
@@ -86,7 +89,7 @@ offset_bottom = 37.0
 texture = ExtResource("1_v5ytw")
 expand_mode = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Panel"]
+[node name="PanelContainer" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
@@ -95,7 +98,11 @@ offset_bottom = 12.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8o5lj")
 
 [node name="Price" type="Label" parent="Panel/PanelContainer"]
-layout_mode = 2
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 7.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("5_kanch")
 theme_override_font_sizes/font_size = 6
 
@@ -127,6 +134,24 @@ size_flags_horizontal = 3
 texture = ExtResource("4_ay8iy")
 expand_mode = 1
 
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer2/Tiempo"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 11.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ay8iy")
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer2/Tiempo"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 13.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kanch")
+theme_override_font_sizes/font_size = 6
+
 [node name="Buy" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 15.0
@@ -135,4 +160,7 @@ offset_right = 42.0
 offset_bottom = 67.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4627451)
+theme_override_fonts/font = ExtResource("5_kanch")
+theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanch")
+text = "Comprar"
