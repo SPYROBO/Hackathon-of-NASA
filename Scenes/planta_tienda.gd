@@ -37,16 +37,14 @@ func setup_seed_card(data: Dictionary):
 	if str(seed_data.sun_tolerance) == "HIGH":
 		sun_icon.texture = load("res://icons/sol.png")
 	elif str(seed_data.sun_tolerance) == "MEDIUM":
-		sun_icon.texture = load("res://icons/sol.png")
+		sun_icon.texture = load("res://icons/templado.png")
 	elif str(seed_data.sun_tolerance) == "LOW":
-		sun_icon.texture = load("res://icons/sol.png")
+		sun_icon.texture = load("res://icons/frio.png")
 	
 	if str(seed_data.water_need) == "HIGH":
-		water_icon.texture = load("res://icons/gota.png")
-	elif str(seed_data.water_need) == "MEDIUM":
-		water_icon.texture = load("res://icons/gota.png")
+		water_icon.texture = load("res://icons/mucha_agua.png")
 	elif str(seed_data.water_need) == "LOW":
-		water_icon.texture = load("res://icons/gota.png")
+		water_icon.texture = load("res://icons/poca_agua.png")
 	time_value.text = str(seed_data.growth_days)
 
 func _on_buy_button_pressed():
