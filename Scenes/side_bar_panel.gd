@@ -1,6 +1,6 @@
 extends Control
-
 @onready var btn_tienda = $"MainVBox/Button"
+@onready var money_label_sidebar = $MainVBox/PanelContainer/HBoxContainer/IU_price #Label del sidebar IU_price
 const SHOP_SCENE = preload("res://Scenes/tienda.tscn")
 
 var shop_instance = null
@@ -8,6 +8,8 @@ var plata_jugador = 100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	btn_tienda.pressed.connect(on_shop_button_pressed)
+	update_money_display(GameManager.money)
+	GameManager.money_changed.connect(update_money_display)
 	
 
 
@@ -19,7 +21,6 @@ func on_shop_button_pressed():
 		shop_instance = SHOP_SCENE.instantiate()
 		
 		add_child(shop_instance)
-		
 		
 		# 3. Conectar la señal de cierre de la tienda (si tu tienda tiene una)
 		# Por ejemplo, si tu Shop.gd tiene una señal 'shop_closed':
@@ -36,3 +37,7 @@ func on_shop_button_pressed():
 func _on_shop_closed():
 	shop_instance = null
 	get_tree().paused = false
+	
+# Función para actualizar la etiqueta de dinero en el sidebar
+func update_money_display(new_money):
+	money_label_sidebar.text = "$" + str(new_money)

@@ -59,9 +59,13 @@ expand_margin_bottom = 10.0
 
 [node name="SideBarPanel" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 147.44315
-offset_bottom = 301.0462
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -331.39453
+offset_bottom = 31.951935
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.7935262, 0.8997157)
 theme = SubResource("Theme_aixeg")
 script = ExtResource("1_4op00")
@@ -268,7 +272,8 @@ layout_mode = 2
 texture = ExtResource("9_lqp8s")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
+[node name="IU_price" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("2_p7t0e")
@@ -278,12 +283,12 @@ text = "  $100  "
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "SCORE:"
 
-[node name="Label2" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="WaterUSage" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "WATER USAGE:"

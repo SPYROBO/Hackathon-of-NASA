@@ -56,8 +56,7 @@ func populate_seed_cards():
 func _on_seed_selected(seed_id: String):
 	var selected_seed_info = get_seed_info(seed_id)
 	if selected_seed_info:
-		if player_money >= selected_seed_info.price:
-			player_money -= selected_seed_info.price
+		if GameManager.spend_money(selected_seed_info.price):
 			update_money_display()
 			print("Comprada semilla: ", selected_seed_info.name)
 			# Aquí deberías añadir la semilla al inventario del jugador
@@ -76,7 +75,7 @@ func get_seed_info(seed_id: String) -> Dictionary:
 	return {}
 
 func update_money_display():
-	money_label.text = "$" + str(player_money)
+	money_label.text = "$" + str(GameManager.money)
 
 func show_shop():
 	self.show() # Mostrar el nodo de la tienda
