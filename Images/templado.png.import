@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blws6u2qh6eia"
-path="res://.godot/imported/templado.png-4e8517fc25be24d4d1eaf78065f7013a.ctex"
+path="res://.godot/imported/templado.png-ca857a1537bdee44b6ae8e49816ae4be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/templado.png"
-dest_files=["res://.godot/imported/templado.png-4e8517fc25be24d4d1eaf78065f7013a.ctex"]
+source_file="res://Images/templado.png"
+dest_files=["res://.godot/imported/templado.png-ca857a1537bdee44b6ae8e49816ae4be.ctex"]
 
 [params]
 

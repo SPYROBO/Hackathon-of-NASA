@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="NASA"
+HEAD
 run/main_scene="uid://bcm3y3dpf3rxw"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
