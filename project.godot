@@ -21,6 +21,10 @@ cfdde3a53fcab9c6d60d00972c61c27df24552beconfig/features=PackedStringArray("4.5",
 
 GameManager="*res://Scenes/GameManager.gd"
 
+[autoload]
+
+GameManager="*res://Code/GameManager.gd"
+
 [display]
 
 window/size/viewport_width=480

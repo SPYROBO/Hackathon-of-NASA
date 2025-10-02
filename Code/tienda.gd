@@ -3,6 +3,7 @@ extends Node2D
 @onready var seed_display_grid = $"Panel/VBoxContainer/Plantas/GridContainer"
 @onready var money_label = $"Panel/VBoxContainer/HBoxContainer2/MoneyLabel" # Asegúrate de que el path sea correcto
 @onready var close_button = $"Panel/VBoxContainer/HBoxContainer/CloseButton"
+@onready var game_manager = get_tree().get_first_node_in_group("game_manager") # Asumiendo un grupo
 #@onready var cancel_button = $"Panel/VBoxContainer/HBoxContainer2/CancelButton"
 
 var player_money = 100 # Esto debería venir del GameManager o un Singleton
@@ -18,6 +19,19 @@ func _ready():
 	update_money_display()
 	load_seed_data()
 	populate_seed_cards()
+	
+	var seed_card_template = load("res://Scenes/planta_tienda.tscn") # Cargar la escena de la tarjeta
+	
+	for seed_data in available_seeds:
+		var seed_card_instance = seed_card_template.instantiate()
+		seed_display_grid.add_child(seed_card_instance)
+		seed_card_instance.setup_seed_card(seed_data)
+		seed_card_instance.seed_selected.connect(_on_seed_selected) # Conectar la señalu
+		
+		if game_manager:
+			seed_card_instance.seed_picked_up_for_planting.connect(game_manager._on_seed_picked_up)
+		else:
+			print("WARNING: GameManager not found for seed_picked_up_for_planting signal.")
 
 
 
