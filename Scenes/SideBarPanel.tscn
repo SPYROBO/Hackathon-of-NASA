@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bcm3y3dpf3rxw"]
 
-[ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="1_fe0ym"]
+[ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Scenes/side_bar_panel.gd" id="1_4op00"]
 [ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="1_mbdp5"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
@@ -64,6 +64,7 @@ offset_right = 147.44315
 offset_bottom = 301.0462
 scale = Vector2(0.7935262, 0.8997157)
 theme = SubResource("Theme_aixeg")
+script = ExtResource("1_4op00")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -110,7 +111,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MainVBox/TabletPanel/TabletHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.22352941, 0.21960784, 0.24313726, 1)
-theme_override_fonts/font = ExtResource("1_fe0ym")
+theme_override_fonts/font = ExtResource("2_p7t0e")
 text = "Tablet"
 
 [node name="Control" type="Control" parent="MainVBox/TabletPanel/TabletHBox"]
@@ -270,7 +271,7 @@ expand_mode = 3
 [node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = 3
-theme_override_fonts/font = ExtResource("1_fe0ym")
+theme_override_fonts/font = ExtResource("2_p7t0e")
 text = "  $100  "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/PanelContainer/HBoxContainer"]
