@@ -1,15 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcm3y3dpf3rxw"]
+[gd_scene load_steps=14 format=3 uid="uid://bcm3y3dpf3rxw"]
 
-[ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Scenes/side_bar_panel.gd" id="1_4op00"]
-[ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="1_mbdp5"]
+[ext_resource type="Script" path="res://Scenes/side_bar_panel.gd" id="1_4op00"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
-[ext_resource type="Texture2D" uid="uid://3t2uyhstpx6c" path="res://Images/BTNharvest.png" id="2_w8b3l"]
 [ext_resource type="FontFile" uid="uid://bnswds2dn3ohe" path="res://fonts/Montserrat/static/Montserrat-Bold.ttf" id="3_4op00"]
-[ext_resource type="Texture2D" uid="uid://fggaab36tl2r" path="res://Images/BTNplant.png" id="3_ekxr6"]
 [ext_resource type="FontFile" uid="uid://8gbfb778tru2" path="res://fonts/Montserrat/static/Montserrat-Medium.ttf" id="4_nve07"]
-[ext_resource type="Texture2D" uid="uid://bolwysxw8thdv" path="res://Images/BTNfumigate.png" id="4_o4nnb"]
-[ext_resource type="Texture2D" uid="uid://k5gi4yph80ha" path="res://Images/moneda.webp" id="9_lqp8s"]
 
 [sub_resource type="Theme" id="Theme_aixeg"]
 
@@ -201,7 +196,6 @@ offset_left = -4.358666
 offset_top = 10.589988
 offset_right = 32.94228
 offset_bottom = 41.492928
-texture_normal = ExtResource("1_mbdp5")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -216,7 +210,6 @@ offset_left = 28.732067
 offset_top = 10.589985
 offset_right = 66.90383
 offset_bottom = 41.492924
-texture_normal = ExtResource("2_w8b3l")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -231,7 +224,6 @@ offset_left = 64.472145
 offset_top = 10.589997
 offset_right = 105.75159
 offset_bottom = 41.95381
-texture_normal = ExtResource("3_ekxr6")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -246,7 +238,6 @@ offset_left = 101.53688
 offset_top = 10.589985
 offset_right = 141.27695
 offset_bottom = 41.9538
-texture_normal = ExtResource("4_o4nnb")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -265,7 +256,6 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MainVBox/PanelContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("9_lqp8s")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
