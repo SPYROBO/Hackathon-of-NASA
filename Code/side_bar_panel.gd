@@ -1,43 +1,51 @@
+# SidebarPanel.gd
 extends Control
+
 @onready var btn_tienda = $"MainVBox/Button"
-@onready var money_label_sidebar = $MainVBox/PanelContainer/HBoxContainer/IU_price #Label del sidebar IU_price
+@onready var money_label_sidebar = $MainVBox/PanelContainer/HBoxContainer/IU_price
+@onready var btn_water = $MainVBox/ActionButtonsHBox/BTNwater 
+
 const SHOP_SCENE = preload("res://Scenes/tienda.tscn")
 
 var shop_instance = null
 var plata_jugador = 100
-# Called when the node enters the scene tree for the first time.
+
+# Referencia al GameManager (Autoload)
+@onready var game_manager = get_tree().get_first_node_in_group("game_manager") # Asumiendo un grupo
+# Asegúrate que el Autoload se llame "GameManager" o ajústalo aquí.
+
+
 func _ready() -> void:
 	btn_tienda.pressed.connect(on_shop_button_pressed)
 	update_money_display(GameManager.money)
 	GameManager.money_changed.connect(update_money_display)
 	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	# CONECTAR EL BOTÓN DE AGUA
+	btn_water.pressed.connect(_on_btn_water_pressed)
 
 func on_shop_button_pressed():
 	if shop_instance == null:
-		# 1. Instanciar la escena de la tienda
 		shop_instance = SHOP_SCENE.instantiate()
-		
 		add_child(shop_instance)
-		
-		# 3. Conectar la señal de cierre de la tienda (si tu tienda tiene una)
-		# Por ejemplo, si tu Shop.gd tiene una señal 'shop_closed':
 		shop_instance.shop_closed.connect(_on_shop_closed)
 		
-	# 4. Mostrar la tienda y pausar el juego (si es una ventana modal)
-	shop_instance.show_shop() # Llama a un método en tu script Shop.gd para manejar la visibilidad
+	shop_instance.show_shop()
 	get_tree().paused = true
-	
-	# Opcional: Actualizar el dinero del jugador en la tienda
 	shop_instance.player_money = plata_jugador
 	shop_instance.update_money_display()
 
 func _on_shop_closed():
 	shop_instance = null
 	get_tree().paused = false
+	# CLAVE: Si la tienda se cierra, aseguramos que ningún modo de acción esté activo
+	game_manager.set_action_mode(GameManager.Action.NONE) 
 	
-# Función para actualizar la etiqueta de dinero en el sidebar
 func update_money_display(new_money):
 	money_label_sidebar.text = "$" + str(new_money)
+
+# --- NUEVA FUNCIÓN PARA EL BOTÓN DE AGUA ---
+func _on_btn_water_pressed():
+	print("Botón de agua presionado. Activando modo riego.")
+	# CLAVE: Notificar al GameManager que estamos en modo "regar"
+	game_manager.set_action_mode(GameManager.Action.WATER)
+	# Opcional: Mostrar algún feedback visual en el botón o cursor

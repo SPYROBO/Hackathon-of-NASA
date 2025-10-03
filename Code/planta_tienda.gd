@@ -22,6 +22,8 @@ var seed_data: Dictionary = {}
 
 signal seed_selected(seed_id) # Para notificar a la tienda que se seleccionó una semilla
 
+signal seed_picked_up_for_planting(seed_id, seed_icon_texture)
+
 func _ready():
 	buy_button.pressed.connect(_on_buy_button_pressed)
 	
@@ -46,8 +48,14 @@ func setup_seed_card(data: Dictionary):
 	elif str(seed_data.water_need) == "LOW":
 		water_icon.texture = load("res://icons/poca_agua.png")
 	time_value.text = str(seed_data.growth_days)
+	print("Emitting signal with ID:", seed_data.id)
 
 func _on_buy_button_pressed():
 	# Emitir una señal para que la tienda principal sepa qué semilla se seleccionó/compró
 	seed_selected.emit(seed_data.id)
 	# También puedes cambiar el texto del botón a "Selected" o deshabilitarlo si solo se compra una vez
+	
+	seed_picked_up_for_planting.emit(seed_data.id, seed_icon.texture)
+	
+	buy_button.disabled = true
+	self.modulate = Color(0.7, 0.7, 0.7) # Atenuar la tarjeta

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://f4o3l70wt6b2"]
 
 [ext_resource type="PackedScene" uid="uid://ddsfybcpvc7vb" path="res://Scenes/planta_tienda.tscn" id="1_k64ye"]
-[ext_resource type="Script" uid="uid://d16nvhlwixvpo" path="res://tienda.gd" id="1_ko86m"]
+[ext_resource type="Script" path="res://Code/tienda.gd" id="1_ko86m"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="2_sruq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qt5ao"]
@@ -59,6 +59,7 @@ columns = 4
 
 [node name="PlantaTienda" parent="Panel/VBoxContainer/Plantas/GridContainer" instance=ExtResource("1_k64ye")]
 layout_mode = 2
+script = null
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
