@@ -1,11 +1,59 @@
 extends Node
 
+enum Action {
+	NONE,       # Modo por defecto
+	WATER,      # Botón de regar presionado
+	HARVEST,    # Botón de cosechar presionado
+	FUMIGATE    # Botón de fumigar presionado
+}
+
+var current_action_mode: Action = Action.NONE
+var WATER_CURSOR_TEXTURE = load("res://icons/gota.png")
+
 var money: int = 100
 
 func _ready():
 	# Asegúrate de añadir el GameManager a un grupo para fácil referencia
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("game_manager")
+
+func set_action_mode(mode: Action):
+	# Si se intenta cambiar a un modo que ya está activo, o a NONE, desactiva el modo actual
+	if current_action_mode == mode and mode != Action.NONE:
+		current_action_mode = Action.NONE
+		print("Modo ", mode, " desactivado.")
+	else:
+		current_action_mode = mode
+		print("Modo de acción establecido a: ", mode)
+		
+	# Desactivar el arrastre de semillas si se activa cualquier otro modo
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(null) 
+	
+	if current_action_mode == Action.WATER:
+		if drag_icon_node == null:
+			drag_icon_node = TextureRect.new()
+			drag_icon_node.mouse_filter = Control.MOUSE_FILTER_IGNORE # Ignorar clics para no interferir
+			drag_icon_node.z_index = 100
+			var canvas_layer = CanvasLayer.new()
+			canvas_layer.add_child(drag_icon_node)
+			get_tree().get_root().add_child(canvas_layer) # Añadirlo a la raíz para que esté por encima de todo
+		
+		drag_icon_node.texture = WATER_CURSOR_TEXTURE
+		drag_icon_node.expand_mode = TextureRect.EXPAND_FIT_HEIGHT 
+		drag_icon_node.custom_minimum_size = ICON_SIZE
+		drag_icon_node.size = Vector2(20, 20)
+		drag_icon_node.clip_contents = true 
+		
+
+		drag_icon_node.visible = true
+		drag_icon_node.modulate = Color(1.0, 1.0, 1.0, 0.839) # Un poco transparente
+		
+	# Desactivar el arrastre si se activa cualquier otro modo
+	if current_action_mode != Action.NONE:
+		stop_dragging_seed() # Esto desactiva is_dragging_seed
+	
+	print("Modo de acción establecido a: ", current_action_mode)
 
 signal money_changed(new_money)
 
@@ -24,7 +72,7 @@ var is_dragging_seed = false
 var current_seed_id_to_plant = ""
 var seed_drag_icon_texture: Texture2D = null
 
-const ICON_SIZE = Vector2(3, 3) 
+const ICON_SIZE = Vector2(10, 10) 
 
 
 # --- Nodo de Icono de Arrastre (Sprite2D o TextureRect) ---
@@ -43,6 +91,15 @@ func _process(_delta):
 		
 		# 2. Centrar el icono: Restar la mitad del tamaño del nodo (ahora que el tamaño está correcto)
 		drag_icon_node.global_position = mouse_pos - drag_icon_node.size / 2 
+	elif drag_icon_node and current_action_mode == Action.WATER:
+		# Ocultar si el arrastre no está activo
+		drag_icon_node.visible = true 
+		
+		# 1. Obtener la posición global del ratón
+		var mouse_pos = get_viewport().get_mouse_position()
+		
+		# 2. Centrar el icono: Restar la mitad del tamaño del nodo (ahora que el tamaño está correcto)
+		drag_icon_node.global_position = mouse_pos - drag_icon_node.size / 2 
 	elif drag_icon_node and drag_icon_node.visible:
 		# Ocultar si el arrastre no está activo
 		drag_icon_node.visible = false 
@@ -51,7 +108,7 @@ func _process(_delta):
 
 # --- Manejo de la señal de la Tienda ---
 func _on_seed_picked_up(seed_id: String, icon_texture: Texture2D):
-
+	set_action_mode(Action.NONE) 
 	is_dragging_seed = true
 	current_seed_id_to_plant = seed_id
 	seed_drag_icon_texture = icon_texture

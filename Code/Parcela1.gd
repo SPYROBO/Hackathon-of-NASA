@@ -60,29 +60,55 @@ func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 
 # --- LÓGICA DE PLANTACIÓN (USADA AL HACER CLIC) ---
 
+# Parcela1.gd (Fragmento handle_plot_click)
+
 func handle_plot_click():
-	# 1. VERIFICAR si el GameManager está en modo de arrastre
+	
+	# 1. LÓGICA DE PLANTACIÓN (Prioridad alta y siempre posible con arrastre)
 	if game_manager.is_dragging_seed:
-		
-		# 2. VERIFICAR si la parcela está vacía
 		if not is_planted:
-			
 			var seed_id = game_manager.current_seed_id_to_plant
-			
-			# 3. Ejecutar plantación
 			plant_seed(seed_id)
-			
-			# 4. Detener el modo de arrastre del GameManager
-			game_manager.stop_dragging_seed()
-			
+			game_manager.stop_dragging_seed() # Finaliza el arrastre
 			print("Plantada semilla ", seed_id, " en Parcela ", parcela_id)
 		else:
-			print("Error: Parcela ", parcela_id, " ya está ocupada.")
+			print("Error: Parcela ", parcela_id, " ya está ocupada. No se puede plantar.")
+		# El clic se consume aquí, no pasa a la siguiente lógica
+		return 
+		
 	
-	# Si no estás arrastrando una semilla, el clic interactúa con la planta
-	elif is_planted:
-		# Lógica de interacción normal (ej. cosechar, regar, ver info)
-		pass
+	# 2. LÓGICA DE ACCIONES DE BARRA LATERAL (Si no estamos arrastrando)
+	
+	match game_manager.current_action_mode:
+		
+		GameManager.Action.WATER:
+			if is_planted:
+				regar(30.0) 
+				print("Regada planta en Parcela ", parcela_id, ". Nivel de agua: ", nivel_agua_actual)
+				game_manager.set_action_mode(GameManager.Action.NONE) # Desactivar modo
+			else:
+				print("No hay planta para regar en Parcela ", parcela_id)
+		
+		GameManager.Action.HARVEST:
+			if is_planted:
+				# Lógica de cosecha
+				print("Cosechando planta en Parcela ", parcela_id)
+				game_manager.set_action_mode(GameManager.Action.NONE) # Desactivar modo
+			else:
+				print("No hay planta para cosechar en Parcela ", parcela_id)
+				
+		GameManager.Action.FUMIGATE:
+			if is_planted:
+				# Lógica de fumigación
+				print("Fumigando planta en Parcela ", parcela_id)
+				game_manager.set_action_mode(GameManager.Action.NONE) # Desactivar modo
+			else:
+				print("No hay planta para fumigar en Parcela ", parcela_id)
+
+		GameManager.Action.NONE:
+			# Clic normal sin acción activa (ej. mostrar información)
+			if is_planted:
+				pass
 
 
 # --- MÉTODO PRINCIPAL DE PLANTACIÓN ---

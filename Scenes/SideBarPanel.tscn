@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcm3y3dpf3rxw"]
+[gd_scene load_steps=18 format=3 uid="uid://bcm3y3dpf3rxw"]
 
 [ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Code/side_bar_panel.gd" id="1_4op00"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bnswds2dn3ohe" path="res://fonts/Montserrat/static/Montserrat-Bold.ttf" id="3_4op00"]
 [ext_resource type="FontFile" uid="uid://8gbfb778tru2" path="res://fonts/Montserrat/static/Montserrat-Medium.ttf" id="4_nve07"]
+[ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="6_ekxr6"]
+[ext_resource type="Texture2D" uid="uid://3t2uyhstpx6c" path="res://Images/BTNharvest.png" id="7_fe0ym"]
+[ext_resource type="Texture2D" uid="uid://fggaab36tl2r" path="res://Images/BTNplant.png" id="8_p7t0e"]
+[ext_resource type="Texture2D" uid="uid://bolwysxw8thdv" path="res://Images/BTNfumigate.png" id="9_4op00"]
 
 [sub_resource type="Theme" id="Theme_aixeg"]
 
@@ -186,16 +190,18 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BTNwater" type="Button" parent="MainVBox/ActionButtonsHBox"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
-flat = true
 
 [node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNwater"]
+visible = false
 layout_mode = 0
 offset_left = -4.358666
 offset_top = 10.589988
 offset_right = 32.94228
 offset_bottom = 41.492928
+texture_normal = ExtResource("6_ekxr6")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -205,11 +211,13 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
 flat = true
 
 [node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNharvest"]
+visible = false
 layout_mode = 0
 offset_left = 28.732067
 offset_top = 10.589985
 offset_right = 66.90383
 offset_bottom = 41.492924
+texture_normal = ExtResource("7_fe0ym")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -219,11 +227,13 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
 flat = true
 
 [node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNplant"]
+visible = false
 layout_mode = 0
 offset_left = 64.472145
 offset_top = 10.589997
 offset_right = 105.75159
 offset_bottom = 41.95381
+texture_normal = ExtResource("8_p7t0e")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -233,11 +243,13 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
 flat = true
 
 [node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNfumigate"]
+visible = false
 layout_mode = 0
 offset_left = 101.53688
 offset_top = 10.589985
 offset_right = 141.27695
 offset_bottom = 41.9538
+texture_normal = ExtResource("9_4op00")
 ignore_texture_size = true
 stretch_mode = 0
 
