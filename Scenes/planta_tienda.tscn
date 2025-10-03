@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ddsfybcpvc7vb"]
 
-[ext_resource type="Script" uid="uid://cbihs3occjmm" path="res://Code/planta_tienda.gd" id="1_ay8iy"]
+[ext_resource type="Script" path="res://Code/planta_tienda.gd" id="1_ay8iy"]
 [ext_resource type="Texture2D" uid="uid://lsh76wnjpd4y" path="res://Images/plantas/morron.png" id="2_ay8iy"]
 [ext_resource type="Texture2D" uid="uid://bp7mye8yus8n1" path="res://icons/sol.png" id="2_xarbe"]
 [ext_resource type="Texture2D" uid="uid://crmduec10tutt" path="res://icons/gota.png" id="3_kanch"]

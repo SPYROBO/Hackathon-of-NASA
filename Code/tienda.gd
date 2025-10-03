@@ -59,13 +59,6 @@ func populate_seed_cards():
 	for child in seed_display_grid.get_children():
 		child.queue_free()
 
-	var seed_card_template = load("res://Scenes/planta_tienda.tscn") # Cargar la escena de la tarjeta
-
-	for seed_data in available_seeds:
-		var seed_card_instance = seed_card_template.instantiate()
-		seed_display_grid.add_child(seed_card_instance)
-		seed_card_instance.setup_seed_card(seed_data)
-		seed_card_instance.seed_selected.connect(_on_seed_selected) # Conectar la señalu
 
 func _on_seed_selected(seed_id: String):
 	var selected_seed_info = get_seed_info(seed_id)

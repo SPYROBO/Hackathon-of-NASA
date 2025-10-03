@@ -11,15 +11,11 @@ config_version=5
 [application]
 
 config/name="NASA"
-HEAD
-run/main_scene="uid://bcm3y3dpf3rxw"
+run/main_scene="uid://ds0pvem35dq2k"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
+HEADrun/main_scene="uid://bcm3y3dpf3rxw"
 cfdde3a53fcab9c6d60d00972c61c27df24552beconfig/features=PackedStringArray("4.5", "Forward Plus")
-
-[autoload]
-
-GameManager="*res://Scenes/GameManager.gd"
 
 [autoload]
 
