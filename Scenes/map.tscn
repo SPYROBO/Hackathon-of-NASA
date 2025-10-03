@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://b2u0qfsldi58r"]
+[gd_scene load_steps=12 format=4 uid="uid://b2u0qfsldi58r"]
 
 [ext_resource type="Texture2D" uid="uid://co8ldj03mdnpt" path="res://Tilemaps/tilesets-16x16.png" id="1_ci6au"]
 [ext_resource type="Script" uid="uid://upbj8v3lk84i" path="res://Code/barrasemanal.gd" id="2_myvm1"]
 [ext_resource type="Script" uid="uid://dv7651hwk7ie0" path="res://Code/Parcela1.gd" id="3_np2xp"]
 [ext_resource type="Texture2D" uid="uid://cxa8kv5jc5rm3" path="res://Images/empty_progress_bar.png" id="4_w7jjh"]
 [ext_resource type="Texture2D" uid="uid://pc1blopj17r4" path="res://Images/full_progress_bar.png" id="5_6q3n4"]
-[ext_resource type="Script" uid="uid://borfsrpm2efnq" path="res://Code/areaParcela.gd" id="6_6q3n4"]
 [ext_resource type="Script" uid="uid://drd2u0h77sxc1" path="res://Code/logica.gd" id="6_w7jjh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26yhd"]
@@ -121,21 +120,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela1"]
+offset_left = 47.058823
+offset_top = 54.32595
+offset_right = 98.03923
+offset_bottom = 107.64586
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela1"]
 position = Vector2(74.50981, 82.49497)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela1/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela1/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela2" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -151,21 +149,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela2"]
+offset_left = 158.16994
+offset_top = 54.325943
+offset_right = 209.15034
+offset_bottom = 107.64586
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela2"]
 position = Vector2(185.62093, 82.494965)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela2/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela2/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela3" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -181,21 +178,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela3"]
+offset_left = 271.89545
+offset_top = 54.325943
+offset_right = 322.87585
+offset_bottom = 107.64586
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela3"]
 position = Vector2(299.34644, 82.494965)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela3/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela3/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela4" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -211,21 +207,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela4"]
+offset_left = 383.0066
+offset_top = 55.331978
+offset_right = 433.987
+offset_bottom = 108.651886
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela4"]
 position = Vector2(410.45752, 83.50101)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela4/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela4/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela5" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -241,21 +236,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela5"]
+offset_left = 47.058823
+offset_top = 183.09857
+offset_right = 98.03923
+offset_bottom = 236.41849
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela5"]
 position = Vector2(74.509796, 211.26761)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela5/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela5/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela6" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -271,21 +265,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela6"]
+offset_left = 159.47713
+offset_top = 183.09857
+offset_right = 210.45753
+offset_bottom = 236.41849
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela6"]
 position = Vector2(186.9281, 211.26761)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela6/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela6/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela7" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
@@ -301,21 +294,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela7"]
+offset_left = 270.58826
+offset_top = 182.09254
+offset_right = 321.56866
+offset_bottom = 235.41246
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela7"]
 position = Vector2(298.0392, 210.26157)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela7/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela7/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Parcela8" type="Node2D" parent="Foreground"]
 position = Vector2(7, 6)
@@ -332,21 +324,20 @@ texture_under = ExtResource("4_w7jjh")
 texture_progress = ExtResource("5_6q3n4")
 metadata/_edit_use_anchors_ = true
 
+[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela8"]
+offset_left = 376.00656
+offset_top = 176.09254
+offset_right = 426.98697
+offset_bottom = 229.41246
+expand_mode = 4
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela8"]
 position = Vector2(403.45752, 204.26157)
-script = ExtResource("6_6q3n4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parcela8/Area2D"]
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
-
-[node name="PlantVisualSprite2D" type="TextureRect" parent="Foreground/Parcela8/Area2D"]
-offset_left = -27.450981
-offset_top = -28.16902
-offset_right = 23.529427
-offset_bottom = 25.150892
-expand_mode = 4
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
