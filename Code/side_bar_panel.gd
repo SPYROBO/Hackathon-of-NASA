@@ -2,8 +2,8 @@
 extends Control
 
 @onready var btn_tienda = $"MainVBox/Button"
-@onready var money_label_sidebar = $MainVBox/PanelContainer/HBoxContainer/IU_price
-@onready var btn_water = $MainVBox/ActionButtonsHBox/BTNwater 
+@onready var money_label_sidebar = $MainVBox/MarginContainer2/PanelContainer/HBoxContainer/IU_price
+@onready var btn_water = $MainVBox/MarginContainer/ActionButtonsHBox/BTNwater
 
 const SHOP_SCENE = preload("res://Scenes/tienda.tscn")
 

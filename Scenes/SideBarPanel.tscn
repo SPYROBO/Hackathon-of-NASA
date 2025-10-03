@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcm3y3dpf3rxw"]
+[gd_scene load_steps=36 format=3 uid="uid://bcm3y3dpf3rxw"]
 
-[ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Code/popup_tienda.gd" id="1_fe0ym"]
+[ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Code/side_bar_panel.gd" id="1_fe0ym"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bnswds2dn3ohe" path="res://fonts/Montserrat/static/Montserrat-Bold.ttf" id="3_4op00"]
@@ -46,15 +46,52 @@ corner_radius_bottom_left = 5
 expand_margin_left = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fe0ym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4gmy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7xlr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v20hd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrjsu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7t0e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyrf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06l6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dx0p2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plltf"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nve07"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kq22v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rh4rx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mdjj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3csy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4op00"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqp8s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hyanh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hqx7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyanh"]
 content_margin_right = 5.0
 bg_color = Color(0.16078432, 0.2784314, 0.3647059, 1)
 corner_radius_top_right = 5
-expand_margin_left = 12.0
-expand_margin_right = 12.0
-expand_margin_bottom = 10.0
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+expand_margin_bottom = 5.0
 
 [node name="SideBarPanel" type="Control"]
 layout_mode = 3
@@ -184,74 +221,68 @@ theme_override_fonts/font = ExtResource("4_nve07")
 theme_override_font_sizes/font_size = 6
 text = "SOIL MOISTURE:"
 
-[node name="ActionButtonsHBox" type="HBoxContainer" parent="MainVBox"]
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_bottom = -5
+
+[node name="ActionButtonsHBox" type="HBoxContainer" parent="MainVBox/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 3
+alignment = 1
 
-[node name="BTNwater" type="Button" parent="MainVBox/ActionButtonsHBox"]
-custom_minimum_size = Vector2(30, 0)
+[node name="BTNwater" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 35
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_constants/line_spacing = 0
+theme_override_icons/icon = ExtResource("6_ekxr6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fe0ym")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_o4gmy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u7xlr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v20hd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lrjsu")
 
-[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNwater"]
-visible = false
-layout_mode = 0
-offset_left = -4.358666
-offset_top = 10.589988
-offset_right = 32.94228
-offset_bottom = 41.492928
-texture_normal = ExtResource("6_ekxr6")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="BTNharvest" type="Button" parent="MainVBox/ActionButtonsHBox"]
+[node name="BTNharvest" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 35
+theme_override_icons/icon = ExtResource("7_fe0ym")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p7t0e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xyrf5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_06l6u")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dx0p2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plltf")
 flat = true
 
-[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNharvest"]
-visible = false
-layout_mode = 0
-offset_left = 28.732067
-offset_top = 10.589985
-offset_right = 66.90383
-offset_bottom = 41.492924
-texture_normal = ExtResource("7_fe0ym")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="BTNplant" type="Button" parent="MainVBox/ActionButtonsHBox"]
+[node name="BTNplant" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 35
+theme_override_icons/icon = ExtResource("8_p7t0e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kq22v")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rh4rx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8mdjj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y3csy")
 flat = true
 
-[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNplant"]
-visible = false
-layout_mode = 0
-offset_left = 64.472145
-offset_top = 10.589997
-offset_right = 105.75159
-offset_bottom = 41.95381
-texture_normal = ExtResource("8_p7t0e")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="BTNfumigate" type="Button" parent="MainVBox/ActionButtonsHBox"]
+[node name="BTNfumigate" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/icon_max_width = 35
+theme_override_icons/icon = ExtResource("9_4op00")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4op00")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lqp8s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hyanh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0hqx7")
 flat = true
-
-[node name="TextureButton" type="TextureButton" parent="MainVBox/ActionButtonsHBox/BTNfumigate"]
-visible = false
-layout_mode = 0
-offset_left = 101.53688
-offset_top = 10.589985
-offset_right = 141.27695
-offset_bottom = 41.9538
-texture_normal = ExtResource("9_4op00")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="space4" type="Control" parent="MainVBox"]
 custom_minimum_size = Vector2(10, 15)
@@ -259,33 +290,39 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = -6
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hyanh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/MarginContainer2/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainVBox/PanelContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainVBox/MarginContainer2/PanelContainer/HBoxContainer"]
 layout_mode = 2
 expand_mode = 3
 
-[node name="IU_price" type="Label" parent="MainVBox/PanelContainer/HBoxContainer"]
+[node name="IU_price" type="Label" parent="MainVBox/MarginContainer2/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("2_p7t0e")
 text = "  $100  "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/PanelContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer2/PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MainVBox/MarginContainer2/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "SCORE:"
 
-[node name="Label2" type="Label" parent="MainVBox/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MainVBox/MarginContainer2/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "WATER USAGE:"
