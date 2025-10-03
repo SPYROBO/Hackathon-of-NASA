@@ -18,7 +18,7 @@ cfdde3a53fcab9c6d60d00972c61c27df24552beconfig/features=PackedStringArray("4.5",
 
 [autoload]
 
-GameManager="*res://Scenes/GameManager.gd"
+GameManager="*res://Code/GameManager.gd"
 
 [display]
 
