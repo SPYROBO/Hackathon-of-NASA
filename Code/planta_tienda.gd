@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+extends Node
+
+@onready var price_label = $"PanelContainer/Price"
+@onready var seed_icon = $"BoxContainer/Panel/TextureRect"
+#@onready var name_label = $"VBoxContainer/Seed Name"
+@onready var sun_value = $"HBoxContainer2/Sol" # Ajustar path
+@onready var water_value = $"HBoxContainer2/Agua" # Ajustar path
+#@onready var days_label = $"VBoxContainer/HBoxContainer2/Days to Grow" # Ajustar path
+@onready var buy_button = $"Buy/Select"
+
+var seed_data: Dictionary # Un diccionario que contendrá los datos de esta semilla
+=======
 extends Control
 @onready var seed_icon = $"Panel/BoxContainer/Panel/TextureRect" 
 
@@ -19,12 +32,16 @@ extends Control
 @onready var buy_button = $"Panel/Buy" # El botón 'Buy'
 
 var seed_data: Dictionary = {}
+>>>>>>> 85bdc761e510a02ad32fbed0ef6a98e7d4a6442e
 
 signal seed_selected(seed_id) # Para notificar a la tienda que se seleccionó una semilla
 
 func _ready():
 	buy_button.pressed.connect(_on_buy_button_pressed)
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 85bdc761e510a02ad32fbed0ef6a98e7d4a6442e
 
 func setup_seed_card(data: Dictionary):
 	seed_data = data
@@ -35,6 +52,21 @@ func setup_seed_card(data: Dictionary):
 	
 	# Actualizar atributos (simples por ahora)
 	if str(seed_data.sun_tolerance) == "HIGH":
+<<<<<<< HEAD
+		sun_value.texture = load("res://icons/sol.png")
+	elif str(seed_data.sun_tolerance) == "MEDIUM":
+		sun_value.texture = load("res://icons/sol.png")
+	elif str(seed_data.sun_tolerance) == "LOW":
+		sun_value.texture = load("res://icons/sol.png")
+	
+	if str(seed_data.water_need) == "HIGH":
+		water_value.texture = load("res://icons/gota.png")
+	elif str(seed_data.water_need) == "MEDIUM":
+		water_value.texture = load("res://icons/gota.png")
+	elif str(seed_data.water_need) == "LOW":
+		water_value.texture = load("res://icons/gota.png")
+	#days_label.text = str(seed_data.growth_days) + " Days"
+=======
 		sun_icon.texture = load("res://icons/sol.png")
 	elif str(seed_data.sun_tolerance) == "MEDIUM":
 		sun_icon.texture = load("res://icons/templado.png")
@@ -46,6 +78,7 @@ func setup_seed_card(data: Dictionary):
 	elif str(seed_data.water_need) == "LOW":
 		water_icon.texture = load("res://icons/poca_agua.png")
 	time_value.text = str(seed_data.growth_days)
+>>>>>>> 85bdc761e510a02ad32fbed0ef6a98e7d4a6442e
 
 func _on_buy_button_pressed():
 	# Emitir una señal para que la tienda principal sepa qué semilla se seleccionó/compró
