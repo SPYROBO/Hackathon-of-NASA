@@ -1,10 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://bcm3y3dpf3rxw"]
+[gd_scene load_steps=29 format=3 uid="uid://bcm3y3dpf3rxw"]
 
 [ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Code/side_bar_panel.gd" id="1_fe0ym"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
 [ext_resource type="FontFile" uid="uid://bqt1o48y34t8a" path="res://fonts/Montserrat/static/Montserrat-SemiBold.ttf" id="2_p7t0e"]
-[ext_resource type="FontFile" uid="uid://bnswds2dn3ohe" path="res://fonts/Montserrat/static/Montserrat-Bold.ttf" id="3_4op00"]
-[ext_resource type="FontFile" uid="uid://8gbfb778tru2" path="res://fonts/Montserrat/static/Montserrat-Medium.ttf" id="4_nve07"]
 [ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="6_ekxr6"]
 [ext_resource type="Texture2D" uid="uid://3t2uyhstpx6c" path="res://Images/BTNharvest.png" id="7_fe0ym"]
 [ext_resource type="Texture2D" uid="uid://bolwysxw8thdv" path="res://Images/BTNfumigate.png" id="9_4op00"]
@@ -35,15 +33,12 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nve07"]
-content_margin_left = 5.0
-bg_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxr6"]
+bg_color = Color(0.4837253, 0.9560706, 0.43625543, 0.8901961)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fe0ym"]
 
@@ -164,53 +159,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lfsap")
 text = "Shop"
 alignment = 0
 
+[node name="space5" type="Control" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="MainVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22352941, 0.21960784, 0.24313726, 1)
+theme_override_fonts/font = ExtResource("2_p7t0e")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_ekxr6")
+text = " Manual"
+alignment = 0
+
 [node name="space" type="Control" parent="MainVBox"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Report" type="Label" parent="MainVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
-theme_override_fonts/font = ExtResource("3_4op00")
-theme_override_font_sizes/font_size = 11
-text = "Daily Report"
-
-[node name="PanelContainer2" type="PanelContainer" parent="MainVBox"]
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_nve07")
-
-[node name="ReportVBox" type="VBoxContainer" parent="MainVBox/PanelContainer2"]
-modulate = Color(1, 0.47058824, 1, 1)
-layout_mode = 2
-
-[node name="Day" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
-theme_override_fonts/font = ExtResource("4_nve07")
-theme_override_font_sizes/font_size = 6
-text = "DAY:"
-
-[node name="Temp" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
-theme_override_fonts/font = ExtResource("4_nve07")
-theme_override_font_sizes/font_size = 6
-text = "TEMPERATURE:"
-
-[node name="Precipitation" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
-theme_override_fonts/font = ExtResource("4_nve07")
-theme_override_font_sizes/font_size = 6
-text = "PRECIPITATION:"
-
-[node name="Soil Moisture" type="Label" parent="MainVBox/PanelContainer2/ReportVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18431373, 0.2901961, 0.39607844, 1)
-theme_override_fonts/font = ExtResource("4_nve07")
-theme_override_font_sizes/font_size = 6
-text = "SOIL MOISTURE:"
 
 [node name="MarginContainer" type="MarginContainer" parent="MainVBox"]
 layout_mode = 2
