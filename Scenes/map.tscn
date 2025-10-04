@@ -145,6 +145,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela2" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 2
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela2"]
 offset_left = 138.99998
@@ -174,6 +175,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela3" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 3
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela3"]
 offset_left = 253.00002
@@ -203,6 +205,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela4" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 4
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela4"]
 offset_left = 365.0
@@ -232,6 +235,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela5" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 5
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela5"]
 offset_left = 29.0
@@ -261,6 +265,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela6" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 6
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela6"]
 offset_left = 140.0
@@ -290,6 +295,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 
 [node name="Parcela7" type="Node2D" parent="Foreground"]
 script = ExtResource("3_np2xp")
+parcela_id = 7
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela7"]
 offset_left = 252.00002
@@ -320,6 +326,7 @@ shape = SubResource("RectangleShape2D_np2xp")
 [node name="Parcela8" type="Node2D" parent="Foreground"]
 position = Vector2(7, 6)
 script = ExtResource("3_np2xp")
+parcela_id = 8
 
 [node name="Barradeagua" type="TextureProgressBar" parent="Foreground/Parcela8"]
 offset_left = 356.0

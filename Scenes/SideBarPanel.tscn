@@ -21,12 +21,11 @@ content_margin_bottom = 10.0
 bg_color = Color(0.654902, 0.8392157, 0.9607843, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4op00"]
-content_margin_left = 5.0
-bg_color = Color(0.654902, 0.8392157, 0.9607843, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color(0.14191586, 0.76307744, 0.86585987, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfsap"]
 content_margin_left = 5.0
@@ -137,26 +136,31 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="TabletPanel" type="PanelContainer" parent="MainVBox"]
+[node name="TabletPanel" type="Button" parent="MainVBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4op00")
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_4op00")
 
 [node name="TabletHBox" type="HBoxContainer" parent="MainVBox/TabletPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 149.0
+offset_bottom = 24.0
+
+[node name="Control" type="Control" parent="MainVBox/TabletPanel/TabletHBox"]
 layout_mode = 2
+size_flags_stretch_ratio = 20.0
 
 [node name="Label" type="Label" parent="MainVBox/TabletPanel/TabletHBox"]
 layout_mode = 2
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0.22352941, 0.21960784, 0.24313726, 1)
 theme_override_fonts/font = ExtResource("2_p7t0e")
 text = "Tablet"
 
-[node name="Control" type="Control" parent="MainVBox/TabletPanel/TabletHBox"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-size_flags_stretch_ratio = 20.0
-
 [node name="CheckButton" type="CheckButton" parent="MainVBox/TabletPanel/TabletHBox"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="space2" type="Control" parent="MainVBox"]
 custom_minimum_size = Vector2(10, 5)

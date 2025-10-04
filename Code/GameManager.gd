@@ -7,6 +7,9 @@ enum Action {
 	FUMIGATE    # Botón de fumigar presionado
 }
 
+var farm_plot_states: Dictionary = {}
+
+
 var current_action_mode: Action = Action.NONE
 var WATER_CURSOR_TEXTURE = load("res://icons/gota.png")
 
@@ -149,3 +152,21 @@ func plant_seed_at_position(grid_position: Vector2, planted_seed_id: String):
 	# 2. Instanciar la planta visualmente en la parcela
 	# 3. Llamar a stop_dragging_seed()
 	#stop_dragging_seed()
+	
+func register_plant_creation(parcela_id: int, seed_id: String):
+	# Inicializa el estado de la planta en el registro central
+	farm_plot_states[parcela_id] = {
+		"plant_id": seed_id,
+		"nivel_agua": 100.0, # Nivel inicial de agua
+		"edad_dias": 0,
+		"estado": "Recién plantada"
+	}
+	print("GameManager: Registrada nueva planta ", seed_id, " en Parcela ", parcela_id)
+
+func update_plot_water(parcela_id: int, new_water_level: float):
+	if farm_plot_states.has(parcela_id):
+		farm_plot_states[parcela_id]["nivel_agua"] = new_water_level
+
+# --- FUNCIÓN LLAMADA POR LA TABLET PARA OBTENER DATOS ---
+func get_all_plot_states() -> Dictionary:
+	return farm_plot_states
