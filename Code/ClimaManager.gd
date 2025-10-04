@@ -1,71 +1,89 @@
 # ClimaManager.gd
 extends Node
 
-# URL base de la API NASA POWER (ajusta el nombre del archivo si es necesario)
+# NOTE: La referencia al GameManager debe ser @onready para asegurar que el nodo exista.
+# Usar get_first_node_in_group es correcto si GameManager está en el grupo "game_manager".
+@onready var game_manager = get_tree().get_first_node_in_group("game_manager") 
+
 const NASA_POWER_URL = "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,PRECTOTCORR,ALLSKY_SFC_SW_DWN,RH2M,WS2M&community=AG&longitude=%s&latitude=%s&start=%s&end=%s&format=JSON"
+const NASA_FILL_VALUE = -999.0
 
-# Variables para almacenar los datos (asumiendo una única ubicación de granja)
-var granja_latitud: float = 34.0522  # Ejemplo: Los Ángeles, CÁMBIALO a tu ubicación
-var granja_longitud: float = -118.2437 # Ejemplo: Los Ángeles, CÁMBIALO a tu ubicación
-var clima_datos: Dictionary = {} # Almacena los datos procesados
-
-# Necesitas un nodo HTTPRequest para hacer la solicitud
+var granja_latitud: float = 34.0522
+var granja_longitud: float = -118.2437
+var clima_datos: Dictionary = {} 
 var http_request: HTTPRequest
 
-signal clima_data_updated(success: bool) # Emite TRUE si fue exitoso, FALSE si falló
+signal clima_data_updated(success: bool)
 
 func _ready():
-	# Asegúrate de que este nodo sea un hijo del ClimaManager
 	add_to_group("clima_manager")
-	# 🚨 VERIFICACIÓN CRÍTICA 1: Asegurar que el nodo HTTPRequest exista
+	
 	if http_request == null or not is_instance_valid(http_request):
 		http_request = HTTPRequest.new()
 		add_child(http_request)
 		
 	http_request.process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	# 🚨 VERIFICACIÓN CRÍTICA 2: Asegurar que la señal esté conectada.
-	# Usamos connect.is_connected() para evitar duplicados si _ready se llama dos veces.
 	if not http_request.request_completed.is_connected(_on_request_completed):
 		http_request.request_completed.connect(_on_request_completed)
 	
 	print("DEBUG: HTTPRequest está listo y conectado.")
+	
+	# 🚨 Inicialización de Día Cero en GameManager (si no lo hace el propio GameManager)
+	# Si el GameManager es el que maneja la persistencia, esta lógica debe estar ahí.
+	# Asumiendo que el GameManager tiene la variable:
+	if is_instance_valid(game_manager) and game_manager.get("dia_cero_unix") == 0.0:
+		game_manager.dia_cero_unix = Time.get_unix_time_from_system() 
 
-# --- FUNCIÓN PRINCIPAL PARA SOLICITAR DATOS ---
-# Llama a esta función para actualizar los datos del clima
-func fetch_nasa_data(dias_atras: int = 30):
-	
-	var end_time_unix: float = Time.get_unix_time_from_system()
-	
-	# 2. Calcular la fecha de inicio Unix
+
+# --- NUEVA FUNCIÓN: Busca datos para la semana de juego ---
+# Es la función que llamará la Tablet al abrirse o el GameManager al avanzar la semana.
+func fetch_clima_por_semana(semana_index: int):
+	# Verificar acceso al GameManager y al ancla fija
+	if not is_instance_valid(game_manager) or game_manager.dia_cero_unix == 0.0:
+		push_error("ClimaManager no puede acceder al GameManager o al día cero fijo (1 de Ago. 2024).")
+		clima_datos = {"error": "Error de inicialización del tiempo de juego."}
+		emit_signal("clima_data_updated", false)
+		return
+		
 	var seconds_in_day: float = 24.0 * 60.0 * 60.0
+	var seconds_in_week: float = 7.0 * seconds_in_day
 	
-	# 🚨 CLAVE: Aseguramos que la resta se haga con float
-	var seconds_to_subtract: float = float(dias_atras) * seconds_in_day
-	var start_time_unix: float = end_time_unix - seconds_to_subtract 
-
-	# 3. Conversión a Diccionarios
-	var end_datetime_dict = Time.get_datetime_dict_from_unix_time(end_time_unix)
-	var start_datetime_dict = Time.get_datetime_dict_from_unix_time(start_time_unix)
-
-	# 4. Formato YYYYMMDD
-	var end_date_formatted = "%04d%02d%02d" % [
-		end_datetime_dict.year, 
-		end_datetime_dict.month, 
-		end_datetime_dict.day
-	]
+	# 1. Calcular el punto de inicio de la semana actual
+	# semana_index * 7 días (0, 7, 14, 21 días de desfase desde el Día Cero)
+	var dias_offset: float = float(semana_index) * 7.0 
+	
+	# Usamos el dia_cero_unix FIJO de Agosto de 2024
+	var start_time_unix: float = game_manager.dia_cero_unix + (dias_offset * seconds_in_day)
+	var end_time_unix: float = start_time_unix + seconds_in_week
+	
+	# 2. Convertir Unix Time a formato YYYYMMDD
+	
+	var start_dict = Time.get_datetime_dict_from_unix_time(start_time_unix)
+	# Restamos un día al end_time para que la API no incluya el primer día de la siguiente semana
+	# Además, Godot tiene un bug con Time.get_datetime_dict_from_unix_time que puede causar errores de formato si se usa con fechas futuras.
+	var end_dict = Time.get_datetime_dict_from_unix_time(end_time_unix - seconds_in_day) 
+	
 	var start_date_formatted = "%04d%02d%02d" % [
-		start_datetime_dict.year, 
-		start_datetime_dict.month, 
-		start_datetime_dict.day
+		start_dict.year, start_dict.month, start_dict.day
+	]
+	var end_date_formatted = "%04d%02d%02d" % [
+		end_dict.year, end_dict.month, end_dict.day
 	]
 	
-	# 5. Mantenemos la verificación de rango de la NASA
-	if start_datetime_dict.year < 1981:
+	# 3. Llamar a la función de solicitud
+	fetch_nasa_data_with_range(start_date_formatted, end_date_formatted)
+
+
+# --- FUNCIÓN AUXILIAR PARA HACER LA SOLICITUD HTTP ---
+func fetch_nasa_data_with_range(start_date_formatted: String, end_date_formatted: String):
+	
+	# Mantenemos la verificación de rango de la NASA (aunque el cálculo basado en Dia Cero es más robusto)
+	var start_year = start_date_formatted.left(4).to_int()
+	if start_year < 1981:
 		start_date_formatted = "19810101"
 		push_warning("La fecha de inicio calculada era muy antigua y se ajustó a 1981/01/01 (Mínimo de NASA).")
 
-	# Crear la URL completa
 	var url = NASA_POWER_URL % [
 		str(granja_longitud), 
 		str(granja_latitud), 
@@ -73,55 +91,40 @@ func fetch_nasa_data(dias_atras: int = 30):
 		end_date_formatted     
 	]
 	
-	print("Solicitando datos de NASA a: ", url)
+	print("Solicitando datos de NASA para la semana: ", start_date_formatted, " a ", end_date_formatted)
 	var error = http_request.request(url)
 	if error != OK:
 		push_error("Error al iniciar la solicitud HTTP: ", error)
 
-# --- FUNCIÓN LLAMADA AL RECIBIR DATOS ---
+
+# --- FUNCIÓN LLAMADA AL RECIBIR DATOS (Se mantiene igual) ---
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	print("Resultado HTTP: ", result, ", Código de Respuesta: ", response_code)
 	
 	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200:
 		var json_string = body.get_string_from_utf8()
-		
-		# 🚨 PASO DE DEPURACIÓN 1: Intenta parsear el JSON
 		var json = JSON.parse_string(json_string) 
 		
-		# 🚨 PASO DE DEPURACIÓN 2: ¿El parseo fue exitoso y el resultado es un diccionario?
 		if json is Dictionary:
-			print("DEBUG: JSON PARSEADO con ÉXITO. Procesando datos...")
-			
-			# --- Lógica de procesamiento ---
 			clima_datos = process_nasa_json(json)
 			
-			# 🚨 PASO DE DEPURACIÓN 3: ¿El diccionario final contiene un error?
 			if clima_datos.has("error"):
 				push_error("Error al procesar el JSON: ", clima_datos["error"])
 				emit_signal("clima_data_updated", false)
 			else:
-				print("DEBUG: Datos procesados y listos. Emitiendo señal...")
-				emit_signal("clima_data_updated", true) # ÉXITO
-				
+				emit_signal("clima_data_updated", true)
 		else:
-			# Esto puede ocurrir si el string JSON está vacío o malformado
-			push_error("Error: La respuesta de NASA no pudo ser parseada a un diccionario (JSON.parse_string falló).")
+			push_error("Error: La respuesta de NASA no pudo ser parseada a un diccionario.")
 			emit_signal("clima_data_updated", false)
 	else:
 		push_error("Error en la solicitud HTTP. Fallo o código inesperado.")
 		emit_signal("clima_data_updated", false)
 
-# --- FUNCIÓN PARA PROCESAR EL JSON DE LA NASA ---
-# ClimaManager.gd (Función process_nasa_json corregida)
-
-# Definimos el valor de relleno de la NASA
-const NASA_FILL_VALUE = -999.0
-
+# --- FUNCIÓN PARA PROCESAR EL JSON DE LA NASA (Se mantiene igual) ---
 func process_nasa_json(json_data: Dictionary) -> Dictionary:
 	var properties = json_data.get("properties", {})
 	var parameter = properties.get("parameter", {})
 	
-	# Inicialización de contadores y sumas para calcular promedios
 	var temp_sum = 0.0
 	var solar_sum = 0.0
 	var precip_sum = 0.0
@@ -129,7 +132,6 @@ func process_nasa_json(json_data: Dictionary) -> Dictionary:
 	var wind_sum = 0.0
 	var count = 0
 
-	# CLAVE: Usamos el diccionario de T2M para iterar sobre todas las fechas disponibles
 	var t2m_data = parameter.get("T2M", {})
 	
 	for date_str in t2m_data.keys():
@@ -139,11 +141,9 @@ func process_nasa_json(json_data: Dictionary) -> Dictionary:
 		var rh = parameter.get("RH2M", {})[date_str]
 		var wind = parameter.get("WS2M", {})[date_str]
 
-		# 🚨 FILTRAR DATOS INVÁLIDOS 🚨
-		if t2m > NASA_FILL_VALUE: # Usamos T2M como filtro principal
+		if t2m > NASA_FILL_VALUE:
 			temp_sum += t2m
 			
-			# Asegurarse de que los demás valores también sean válidos antes de sumar
 			if solar > NASA_FILL_VALUE:
 				solar_sum += solar
 			if precip > NASA_FILL_VALUE:
@@ -157,17 +157,16 @@ func process_nasa_json(json_data: Dictionary) -> Dictionary:
 		
 	if count > 0:
 		return {
-			"dias_validos": count, # <- Nuevo
+			"dias_validos": count,
 			"temperatura_avg": temp_sum / count,
 			"radiacion_solar_avg": solar_sum / count,
-			"precipitacion_total": precip_sum,   # <- Lluvias
-			"humedad_avg": rh_sum / count,       # <- Humedad
-			"viento_avg": wind_sum / count,      # <- Vientos
+			"precipitacion_total": precip_sum,
+			"humedad_avg": rh_sum / count,
+			"viento_avg": wind_sum / count,
 			"ultima_actualizacion": Time.get_datetime_string_from_system(true)
 		}
 	
-	# Si todos los días devuelven -999.0 (ej. todos los datos son futuros), devuelve un error.
-	return {"error": "No se encontraron datos utilizables en el rango de fechas (posiblemente todos los datos son futuros)."}
+	return {"error": "No se encontraron datos utilizables en el rango de fechas."}
 
 
 # --- FUNCIÓN ACCEDIDA POR LA TABLET ---

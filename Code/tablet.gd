@@ -32,7 +32,8 @@ func show_tablet():
 	self.show() # Mostrar el nodo de la tienda
 	self.visible = true
 	clima_label.text = "Obteniendo datos de NASA..."
-	clima_manager.fetch_nasa_data(30) 
+	if is_instance_valid(game_manager):
+		clima_manager.fetch_clima_por_semana(game_manager.semana_index)
 	update_all_info() 
 
 	# Opcional: Pausar el juego principal si es un pop-up modal
