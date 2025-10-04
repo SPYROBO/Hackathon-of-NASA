@@ -15,3 +15,7 @@ position = Vector2(241, 135)
 
 [node name="SideBarPanel" parent="IU_layer" instance=ExtResource("2_8gbba")]
 scale = Vector2(0.794, 0.904)
+
+[node name="space" type="Control" parent="IU_layer/SideBarPanel"]
+anchors_preset = 0
+size_flags_vertical = 3
