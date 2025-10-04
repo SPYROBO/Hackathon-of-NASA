@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://b2u0qfsldi58r"]
+[gd_scene load_steps=14 format=4 uid="uid://b2u0qfsldi58r"]
 
 [ext_resource type="Texture2D" uid="uid://co8ldj03mdnpt" path="res://Tilemaps/tilesets-16x16.png" id="1_ci6au"]
 [ext_resource type="Script" uid="uid://upbj8v3lk84i" path="res://Code/barrasemanal.gd" id="2_myvm1"]
 [ext_resource type="Script" uid="uid://dv7651hwk7ie0" path="res://Code/Parcela1.gd" id="3_np2xp"]
 [ext_resource type="Texture2D" uid="uid://cxa8kv5jc5rm3" path="res://Images/empty_progress_bar.png" id="4_w7jjh"]
 [ext_resource type="Texture2D" uid="uid://pc1blopj17r4" path="res://Images/full_progress_bar.png" id="5_6q3n4"]
+[ext_resource type="Texture2D" uid="uid://cpuw7aqyod1qa" path="res://Images/oruga.png" id="6_4c2oa"]
+[ext_resource type="Texture2D" uid="uid://5xuxy3a3irgf" path="res://Images/full_progress_life_bar.png" id="6_6q3n4"]
 [ext_resource type="Script" uid="uid://drd2u0h77sxc1" path="res://Code/logica.gd" id="6_w7jjh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26yhd"]
@@ -135,6 +137,26 @@ offset_right = 98.03923
 offset_bottom = 107.64586
 expand_mode = 4
 
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela1"]
+offset_left = 47.058823
+offset_top = 39.23541
+offset_right = 175.05882
+offset_bottom = 167.23541
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela1"]
+offset_left = 30.065365
+offset_top = 42.25352
+offset_right = 313.06537
+offset_bottom = 85.253525
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela1"]
 position = Vector2(74.50981, 82.49497)
 
@@ -163,6 +185,26 @@ offset_top = 54.325943
 offset_right = 209.15034
 offset_bottom = 107.64586
 expand_mode = 4
+
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela2"]
+offset_left = 162.0915
+offset_top = 39.235405
+offset_right = 290.0915
+offset_bottom = 167.23541
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela2"]
+offset_left = 139.86928
+offset_top = 41.247482
+offset_right = 422.86926
+offset_bottom = 84.24748
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
 
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela2"]
 position = Vector2(185.62093, 82.494965)
@@ -193,6 +235,26 @@ offset_right = 322.87585
 offset_bottom = 107.64586
 expand_mode = 4
 
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela3"]
+offset_left = 278.4314
+offset_top = 39.235405
+offset_right = 406.4314
+offset_bottom = 167.23541
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela3"]
+offset_left = 256.20917
+offset_top = 41.247482
+offset_right = 539.20917
+offset_bottom = 84.24748
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela3"]
 position = Vector2(299.34644, 82.494965)
 
@@ -221,6 +283,26 @@ offset_top = 55.331978
 offset_right = 433.987
 offset_bottom = 108.651886
 expand_mode = 4
+
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela4"]
+offset_left = 386.92816
+offset_top = 39.235405
+offset_right = 514.92816
+offset_bottom = 167.23541
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela4"]
+offset_left = 367.32025
+offset_top = 41.247482
+offset_right = 650.32025
+offset_bottom = 84.24748
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
 
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela4"]
 position = Vector2(410.45752, 83.50101)
@@ -251,6 +333,26 @@ offset_right = 98.03923
 offset_bottom = 236.41849
 expand_mode = 4
 
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela5"]
+offset_left = 47.058823
+offset_top = 165.99596
+offset_right = 175.05882
+offset_bottom = 293.99597
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela5"]
+offset_left = 139.86928
+offset_top = 175.0503
+offset_right = 422.86926
+offset_bottom = 218.0503
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela5"]
 position = Vector2(74.509796, 211.26761)
 
@@ -280,6 +382,26 @@ offset_right = 210.45753
 offset_bottom = 236.41849
 expand_mode = 4
 
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela6"]
+offset_left = 163.3987
+offset_top = 165.99594
+offset_right = 291.39868
+offset_bottom = 293.99597
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela6"]
+offset_left = 31.372559
+offset_top = 175.0503
+offset_right = 314.37256
+offset_bottom = 218.0503
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela6"]
 position = Vector2(186.9281, 211.26761)
 
@@ -308,6 +430,26 @@ offset_top = 182.09254
 offset_right = 321.56866
 offset_bottom = 235.41246
 expand_mode = 4
+
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela7"]
+offset_left = 278.4314
+offset_top = 165.99594
+offset_right = 406.4314
+offset_bottom = 293.99597
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
+
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela7"]
+offset_left = 254.90196
+offset_top = 175.0503
+offset_right = 537.902
+offset_bottom = 218.0503
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
 
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela7"]
 position = Vector2(298.0392, 210.26157)
@@ -339,6 +481,18 @@ offset_right = 426.98697
 offset_bottom = 229.41246
 expand_mode = 4
 
+[node name="Vida" type="TextureProgressBar" parent="Foreground/Parcela8"]
+offset_left = 360.32028
+offset_top = 168.04425
+offset_right = 643.3203
+offset_bottom = 211.04425
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+value = 100.0
+fill_mode = 1
+texture_under = ExtResource("4_w7jjh")
+texture_progress = ExtResource("6_6q3n4")
+
 [node name="Area2D" type="Area2D" parent="Foreground/Parcela8"]
 position = Vector2(403.45752, 204.26157)
 
@@ -346,6 +500,14 @@ position = Vector2(403.45752, 204.26157)
 position = Vector2(-2.61438, -2.0120697)
 scale = Vector2(1, 0.99999964)
 shape = SubResource("RectangleShape2D_np2xp")
+
+[node name="Plaga" type="TextureRect" parent="Foreground/Parcela8"]
+offset_left = 381.23532
+offset_top = 159.99597
+offset_right = 509.23532
+offset_bottom = 287.99597
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("6_4c2oa")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
