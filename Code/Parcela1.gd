@@ -5,6 +5,7 @@ extends Node # Hereda del nodo Parcela1 (que es un Node)
 @export var reduccion_por_segundo: float = 1.0 # Tasa de evaporación
 @export var celda_de_mapa: Vector2i # Almacenará la posición (x, y) en el TileMap
 @onready var indicador_agua: = $Barradeagua
+
 var nivel_agua_actual: float = 100.0 # Nivel inicial
 
 # ---PROPIEDADES DE COSECHA ---
@@ -14,15 +15,25 @@ var nivel_agua_actual: float = 100.0 # Nivel inicial
 var growth_stages: Array = [0.0, 0.33, 0.66, 1.0]  # Etapas de crecimiento
 var current_stage: int = 0
 
+
 # --- PROPIEDADES DE PLANTACIÓN ---
 @export var parcela_id: int = 1  # Para identificar esta parcela
 var is_planted: bool = false
 var current_plant_id: String = ""
 
+# --- Timer para oportunidad de plaga ---
+var timer_active = false
+var tiempo_transcurrido = 0.0
+var intervalo_plaga = 3.0  # Cada 8 segundos
 
 # --- REFERENCIAS A NODOS HIJOS ---
 @onready var area_interaccion: Area2D = $Area2D # Referencia al Area2D hijo
 @onready var plant_visual = $PlantVisualSprite2D # Asume que añadiste este nodo
+@onready var indicador_vida = $Vida
+@onready var plaga = $Plaga
+
+# --- Vida del la parcela ---
+var nivel_vida_actual: float = 100.0
 
 # --- REFERENCIA AL SINGLETON (GameManager) ---
 @onready var game_manager = get_tree().get_first_node_in_group("game_manager") # Asumiendo un grupo
@@ -37,10 +48,14 @@ func _ready():
 	# Inicialización de la lógica de Plantación
 	plant_visual.visible = false
 	indicador_agua.visible = false
+	indicador_vida.visible = false
+	plaga.visible = false
 	
 	# CONECTAR LA SEÑAL DEL NODO HIJO Area2D
 	# Conectamos la señal 'input_event' emitida por el nodo Area2D hijo
 	area_interaccion.input_event.connect(_on_area_input_event)
+	
+
 
 
 func _process(delta: float):
@@ -64,9 +79,22 @@ func _process(delta: float):
 		indicador_agua.visible = false
 	# Aquí puedes añadir la lógica de crecimiento/marchitamiento de la semilla
 
+	if is_planted:
+		tiempo_transcurrido += delta
+		if tiempo_transcurrido >= intervalo_plaga:
+			tiempo_transcurrido = 0.0
+			generate_oportunity()
+	else:
+		indicador_vida.visible = false
+		tiempo_transcurrido = 0.0
+		
+# --- Comprobar si la plaga es visible y así saber si eliminar vida o no ---
+	if plaga.visible == true:
+		nivel_vida_actual -= reduccion_por_segundo * delta
+		nivel_vida_actual = max(0.0, nivel_vida_actual)
+		indicador_vida.value = nivel_vida_actual
 
 # --- MANEJO DE LA SEÑAL DEL AREA2D HIJO ---
-
 # Esta función es el "slot" que recibe la señal del Area2D.
 func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	# Solo nos interesa el clic izquierdo del ratón
@@ -145,6 +173,7 @@ func plant_seed(seed_id: String):
 	plant_visual.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	plant_visual.visible = true
 	indicador_agua.visible = true
+	indicador_vida.visible = true
 	
 	# Notificar al GameManager que actualice el estado global
 	#game_manager.register_plant_creation(parcela_id, seed_id)
@@ -227,3 +256,12 @@ func reset_plot():
 	actualizar_visual_agua()
 	
 	print("Parcela ", parcela_id, " reseteda y lista para nueva plantación")
+
+# --- Temporizador para oportunidad de plaga ---
+
+	
+# --- Mostrar a la plaga ---
+func generate_oportunity():
+	var oportunity = randi_range(1, 20)
+	if oportunity >= 0:
+		plaga.visible = true
