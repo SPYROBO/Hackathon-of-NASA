@@ -4,6 +4,8 @@ extends Control
 @onready var btn_tienda = $"MainVBox/Button"
 @onready var money_label_sidebar = $MainVBox/MarginContainer2/PanelContainer/HBoxContainer/IU_price
 @onready var btn_water = $MainVBox/MarginContainer/ActionButtonsHBox/BTNwater
+@onready var btn_harvest = $MainVBox/MarginContainer/ActionButtonsHBox/BTNharvest
+@onready var btn_fumigate = $MainVBox/MarginContainer/ActionButtonsHBox/BTNfumigate
 
 const SHOP_SCENE = preload("res://Scenes/tienda.tscn")
 
@@ -21,7 +23,9 @@ func _ready() -> void:
 	GameManager.money_changed.connect(update_money_display)
 	
 	# CONECTAR EL BOTÓN DE AGUA
-	btn_water.pressed.connect(_on_btn_water_pressed)
+	btn_water.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.WATER))
+	btn_harvest.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.HARVEST))
+	btn_fumigate.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.FUMIGATE))
 
 func on_shop_button_pressed():
 	if shop_instance == null:
@@ -44,8 +48,7 @@ func update_money_display(new_money):
 	money_label_sidebar.text = "$" + str(new_money)
 
 # --- NUEVA FUNCIÓN PARA EL BOTÓN DE AGUA ---
-func _on_btn_water_pressed():
-	print("Botón de agua presionado. Activando modo riego.")
-	# CLAVE: Notificar al GameManager que estamos en modo "regar"
-	game_manager.set_action_mode(GameManager.Action.WATER)
-	# Opcional: Mostrar algún feedback visual en el botón o cursor
+func _on_action_button_pressed(action_mode):
+	print("Botón de acción presionado: ", action_mode)
+	# Notificar al GameManager qué modo activar
+	game_manager.set_action_mode(action_mode)

@@ -6,10 +6,13 @@ enum Action {
 	HARVEST,    # Botón de cosechar presionado
 	FUMIGATE    # Botón de fumigar presionado
 }
+var ACTION_TEXTURES = {
+	Action.WATER: load("res://icons/gota.png"),
+	Action.HARVEST: load("res://icons/azada.png"),
+	Action.FUMIGATE: load("res://icons/fumigate.png")
+}
 
 var current_action_mode: Action = Action.NONE
-var WATER_CURSOR_TEXTURE = load("res://icons/gota.png")
-
 var money: int = 100
 
 func _ready():
@@ -30,7 +33,7 @@ func set_action_mode(mode: Action):
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	Input.set_custom_mouse_cursor(null) 
 	
-	if current_action_mode == Action.WATER:
+	if current_action_mode != Action.NONE and ACTION_TEXTURES.has(current_action_mode):
 		if drag_icon_node == null:
 			drag_icon_node = TextureRect.new()
 			drag_icon_node.mouse_filter = Control.MOUSE_FILTER_IGNORE # Ignorar clics para no interferir
@@ -39,16 +42,18 @@ func set_action_mode(mode: Action):
 			canvas_layer.add_child(drag_icon_node)
 			get_tree().get_root().add_child(canvas_layer) # Añadirlo a la raíz para que esté por encima de todo
 		
-		drag_icon_node.texture = WATER_CURSOR_TEXTURE
+		drag_icon_node.texture = ACTION_TEXTURES[current_action_mode]
 		drag_icon_node.expand_mode = TextureRect.EXPAND_FIT_HEIGHT 
 		drag_icon_node.custom_minimum_size = ICON_SIZE
 		drag_icon_node.size = Vector2(20, 20)
 		drag_icon_node.clip_contents = true 
-		
-
 		drag_icon_node.visible = true
 		drag_icon_node.modulate = Color(1.0, 1.0, 1.0, 0.839) # Un poco transparente
-		
+	else:
+		# Si es modo NONE, ocultar el icono
+		if drag_icon_node:
+			drag_icon_node.visible = false
+	
 	# Desactivar el arrastre si se activa cualquier otro modo
 	if current_action_mode != Action.NONE:
 		stop_dragging_seed() # Esto desactiva is_dragging_seed
@@ -91,7 +96,7 @@ func _process(_delta):
 		
 		# 2. Centrar el icono: Restar la mitad del tamaño del nodo (ahora que el tamaño está correcto)
 		drag_icon_node.global_position = mouse_pos - drag_icon_node.size / 2 
-	elif drag_icon_node and current_action_mode == Action.WATER:
+	elif drag_icon_node and current_action_mode != Action.NONE:
 		# Ocultar si el arrastre no está activo
 		drag_icon_node.visible = true 
 		

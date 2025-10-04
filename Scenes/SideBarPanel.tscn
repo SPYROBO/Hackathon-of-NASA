@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bcm3y3dpf3rxw"]
+[gd_scene load_steps=31 format=3 uid="uid://bcm3y3dpf3rxw"]
 
 [ext_resource type="Script" uid="uid://cdpy10xis0nel" path="res://Code/side_bar_panel.gd" id="1_fe0ym"]
 [ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_p7t0e"]
@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://8gbfb778tru2" path="res://fonts/Montserrat/static/Montserrat-Medium.ttf" id="4_nve07"]
 [ext_resource type="Texture2D" uid="uid://b7lbsfgev0u55" path="res://Images/BTNwater.png" id="6_ekxr6"]
 [ext_resource type="Texture2D" uid="uid://3t2uyhstpx6c" path="res://Images/BTNharvest.png" id="7_fe0ym"]
-[ext_resource type="Texture2D" uid="uid://fggaab36tl2r" path="res://Images/BTNplant.png" id="8_p7t0e"]
 [ext_resource type="Texture2D" uid="uid://bolwysxw8thdv" path="res://Images/BTNfumigate.png" id="9_4op00"]
 
 [sub_resource type="Theme" id="Theme_aixeg"]
@@ -67,14 +66,6 @@ expand_margin_bottom = 2.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plltf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nve07"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kq22v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rh4rx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mdjj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3csy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4op00"]
 
@@ -230,7 +221,7 @@ theme_override_constants/margin_bottom = -5
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 3
+theme_override_constants/separation = 11
 alignment = 1
 
 [node name="BTNwater" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
@@ -258,18 +249,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_xyrf5")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_06l6u")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dx0p2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_plltf")
-flat = true
-
-[node name="BTNplant" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_constants/icon_max_width = 35
-theme_override_icons/icon = ExtResource("8_p7t0e")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nve07")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kq22v")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_rh4rx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_8mdjj")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_y3csy")
 flat = true
 
 [node name="BTNfumigate" type="Button" parent="MainVBox/MarginContainer/ActionButtonsHBox"]
