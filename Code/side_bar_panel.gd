@@ -16,7 +16,6 @@ var shop_instance = null
 var tablet_instance = null
 const MANUAL_SCENE = preload("res://Scenes/manual.tscn")
 
-var shop_instance = null
 var manual_instance = null
 var plata_jugador = 100
 
