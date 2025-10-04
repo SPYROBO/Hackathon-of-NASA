@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxppkp3iprfg8"]
+
+[ext_resource type="Script" uid="uid://c3audc0d83vq8" path="res://Code/menu_inicio.gd" id="1_lc4t7"]
+[ext_resource type="Texture2D" uid="uid://m0rwus03a5pn" path="res://Images/Fondos/Gemini_Generated_Image_1o2t901o2t901o2t.png" id="2_lc4t7"]
+[ext_resource type="FontFile" uid="uid://diq2md7qmxg7l" path="res://fonts/Montserrat/static/Montserrat-BlackItalic.ttf" id="3_fok73"]
+
+[node name="Menu-inicio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lc4t7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -9.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lc4t7")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -36.0
+offset_right = 449.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="JUGAR" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_fok73")
+text = "JUGAR"
+
+[node name="EXIT" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_fok73")
+text = "SALIR"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JUGAR" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/EXIT" to="." method="_on_exit_pressed"]

@@ -354,5 +354,6 @@ autostart = true
 [node name="Logica" type="Node2D" parent="."]
 script = ExtResource("6_w7jjh")
 
+[connection signal="fin_de_juego" from="Background/Barrasemanal" to="Logica" method="_on_barrasemanal_fin_de_juego"]
 [connection signal="timeout" from="Timer" to="Logica" method="_on_timer_timeout"]
 [connection signal="dia_actualizado" from="Logica" to="Background/Barrasemanal" method="_on_logica_dia_actualizado"]
