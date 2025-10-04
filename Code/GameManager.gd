@@ -26,13 +26,46 @@ var PLANT_REWARDS = {
 	"zanahoria2": {"money": 3, "item": "zanahoria2"}  # Variante de zanahoria
 }
 
+var farm_plot_states: Dictionary = {}
+
+
 var current_action_mode: Action = Action.NONE
 var money: int = 100
+
+# m es el índice de la semana actual (0 a 3)
+var semana_index: int = 0 
+# i es el índice del día actual (0 a 6)
+var dia_index: int = 0 
+
+var dia_cero_unix: float = 0.0
+
+const DIAS_DE_LA_SEMANA: Array[String] = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+const SEMANAS: Array[String] = ["Semana 1", "Semana 2", "Semana 3", "Semana 4"]
+
 
 func _ready():
 	# Asegúrate de añadir el GameManager a un grupo para fácil referencia
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("game_manager")
+	var fixed_date_dict = {
+		"year": 2024,
+		"month": 8,
+		"day": 1,
+		"hour": 0,
+		"minute": 0,
+		"second": 0
+	}
+	
+	# 🚨 LÍNEA CORREGIDA: Agregamos `true` como segundo argumento (UTC)
+	# y usamos la clase Time correctamente para evitar el error de Parseo.
+	dia_cero_unix = Time.get_unix_time_from_datetime_dict(fixed_date_dict)
+		
+func notificar_nueva_semana():
+	# Solo si el ClimaManager existe, busca nuevos datos.
+	var clima_manager = get_tree().get_first_node_in_group("clima_manager") 
+	if is_instance_valid(clima_manager):
+		# Le pasamos el índice de la semana (0, 1, 2, 3)
+		clima_manager.fetch_clima_por_semana(semana_index) 
 
 func set_action_mode(mode: Action):
 	# Si se intenta cambiar a un modo que ya está activo, o a NONE, desactiva el modo actual
@@ -179,3 +212,21 @@ func harvest_plant(plant_id: String) -> Dictionary:
 	else:
 		print("ERROR: Planta ", plant_id, " no tiene recompensa definida")
 		return {}
+	
+func register_plant_creation(parcela_id: int, seed_id: String):
+	# Inicializa el estado de la planta en el registro central
+	farm_plot_states[parcela_id] = {
+		"plant_id": seed_id,
+		"nivel_agua": 100.0, # Nivel inicial de agua
+		"edad_dias": 0,
+		"estado": "Recién plantada"
+	}
+	print("GameManager: Registrada nueva planta ", seed_id, " en Parcela ", parcela_id)
+
+func update_plot_water(parcela_id: int, new_water_level: float):
+	if farm_plot_states.has(parcela_id):
+		farm_plot_states[parcela_id]["nivel_agua"] = new_water_level
+
+# --- FUNCIÓN LLAMADA POR LA TABLET PARA OBTENER DATOS ---
+func get_all_plot_states() -> Dictionary:
+	return farm_plot_states

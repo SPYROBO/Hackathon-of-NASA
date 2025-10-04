@@ -166,6 +166,7 @@ func plant_seed(seed_id: String):
 	is_planted = true
 	current_plant_id = seed_id
 	
+	game_manager.register_plant_creation(parcela_id, current_plant_id) # Usa la ID de la parcela
 	var seed_texture = game_manager.seed_drag_icon_texture 
 	
 	# Configurar y hacer visible el nodo visual
@@ -187,6 +188,7 @@ func regar(cantidad: float = 30.0):
 	
 func actualizar_visual_agua():
 	indicador_agua.value = nivel_agua_actual
+	game_manager.update_plot_water(parcela_id, nivel_agua_actual) 
 	# Opcional: Ocultar si está lleno o vacío
 func harvest():
 	if is_planted and is_ready_to_harvest:
