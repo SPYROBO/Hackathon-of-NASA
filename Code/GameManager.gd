@@ -11,6 +11,20 @@ var ACTION_TEXTURES = {
 	Action.HARVEST: load("res://icons/azada.png"),
 	Action.FUMIGATE: load("res://icons/fumigate.png")
 }
+var PLANT_REWARDS = {
+	"morron": {"money": 6, "item": "morron"},
+	"cebolla": {"money": 2, "item": "cebolla"}, 
+	"cereza": {"money": 3, "item": "cereza"},      # Fruta rara - más valor
+	"mango": {"money": 6, "item": "mango"},        # Fruta tropical - alto valor
+	"manzana": {"money": 2, "item": "manzana"},    # Fruta común
+	"tomate": {"money": 3, "item": "tomate"},      # Vegetal común
+	"zanahoria1": {"money": 6, "item": "zanahoria1"}, # Vegetal básico
+	"berenjena": {"money": 2, "item": "berenjena"},   # Vegetal especial
+	"lechuga": {"money": 4, "item": "lechuga"},    # Vegetal rápido crecimiento
+	"rabanos": {"money": 2, "item": "rabanos"},    # Vegetal pequeño
+	"gizantes": {"money": 2, "item": "gizantes"},  # Legumbre
+	"zanahoria2": {"money": 3, "item": "zanahoria2"}  # Variante de zanahoria
+}
 
 var current_action_mode: Action = Action.NONE
 var money: int = 100
@@ -154,3 +168,14 @@ func plant_seed_at_position(grid_position: Vector2, planted_seed_id: String):
 	# 2. Instanciar la planta visualmente en la parcela
 	# 3. Llamar a stop_dragging_seed()
 	#stop_dragging_seed()
+signal plant_harvested(plant_id, money_earned, item_gained)
+
+func harvest_plant(plant_id: String) -> Dictionary:
+	if PLANT_REWARDS.has(plant_id):
+		var reward = PLANT_REWARDS[plant_id]
+		add_money(reward.money)
+		emit_signal("plant_harvested", plant_id, reward.money, reward.item)
+		return reward
+	else:
+		print("ERROR: Planta ", plant_id, " no tiene recompensa definida")
+		return {}

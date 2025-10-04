@@ -22,7 +22,7 @@ func _ready() -> void:
 	update_money_display(GameManager.money)
 	GameManager.money_changed.connect(update_money_display)
 	
-	# CONECTAR EL BOTÓN DE AGUA
+	# CONECTAR BOTONES
 	btn_water.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.WATER))
 	btn_harvest.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.HARVEST))
 	btn_fumigate.pressed.connect(_on_action_button_pressed.bind(GameManager.Action.FUMIGATE))
@@ -51,4 +51,13 @@ func update_money_display(new_money):
 func _on_action_button_pressed(action_mode):
 	print("Botón de acción presionado: ", action_mode)
 	# Notificar al GameManager qué modo activar
-	game_manager.set_action_mode(action_mode)
+	match action_mode:
+		1:
+			if game_manager.spend_money(5):
+				game_manager.set_action_mode(action_mode)
+			else: 
+				print("No se pudo realizar la acción debido a que no tiene dinero suficiente ($5)")
+		2:
+			game_manager.set_action_mode(action_mode)
+		3:
+			game_manager.set_action_mode(action_mode)

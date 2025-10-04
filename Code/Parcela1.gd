@@ -7,6 +7,12 @@ extends Node # Hereda del nodo Parcela1 (que es un Node)
 @onready var indicador_agua: = $Barradeagua
 var nivel_agua_actual: float = 100.0 # Nivel inicial
 
+# ---PROPIEDADES DE COSECHA ---
+@export var growth_time: float = 60.0  # Tiempo total para crecer (segundos)
+@export var current_growth: float = 0.0  # Progreso actual de crecimiento
+@export var is_ready_to_harvest: bool = false
+var growth_stages: Array = [0.0, 0.33, 0.66, 1.0]  # Etapas de crecimiento
+var current_stage: int = 0
 
 # --- PROPIEDADES DE PLANTACIÓN ---
 @export var parcela_id: int = 1  # Para identificar esta parcela
@@ -39,7 +45,17 @@ func _ready():
 
 func _process(delta: float):
 	# Lógica de Reducción (Evaporación)
-	if is_planted:
+	if is_planted and not is_ready_to_harvest:
+		# Solo crece si tiene agua
+		if nivel_agua_actual > 0:
+			current_growth += delta
+			check_growth_stage()
+			
+			# Verificar si está lista para cosechar
+			if current_growth >= growth_time:
+				is_ready_to_harvest = true
+				on_plant_ready()
+		# Reducción de agua (solo si está plantado)
 		if nivel_agua_actual > 0:
 			nivel_agua_actual -= reduccion_por_segundo * delta
 			nivel_agua_actual = max(0.0, nivel_agua_actual)
@@ -91,9 +107,15 @@ func handle_plot_click():
 		
 		GameManager.Action.HARVEST:
 			if is_planted:
-				# Lógica de cosecha
-				print("Cosechando planta en Parcela ", parcela_id)
-				game_manager.set_action_mode(GameManager.Action.NONE) # Desactivar modo
+				if is_ready_to_harvest:
+					var reward = harvest()
+					if reward:
+						print("Cosecha exitosa +$", reward.money)
+						game_manager.set_action_mode(GameManager.Action.NONE)
+				else:
+					var progress_percent = int((current_growth / growth_time) * 100)
+					print("Planta no lista para cosechar (", progress_percent, "%)")
+					game_manager.set_action_mode(GameManager.Action.NONE)
 			else:
 				print("No hay planta para cosechar en Parcela ", parcela_id)
 				
@@ -137,3 +159,71 @@ func regar(cantidad: float = 30.0):
 func actualizar_visual_agua():
 	indicador_agua.value = nivel_agua_actual
 	# Opcional: Ocultar si está lleno o vacío
+func harvest():
+	if is_planted and is_ready_to_harvest:
+		# Obtener recompensa del GameManager
+		var reward = game_manager.harvest_plant(current_plant_id)
+		
+		if reward:
+			print("Cosechada ", current_plant_id, " en parcela ", parcela_id)
+			print("Ganaste $", reward.money, " y obtuviste: ", reward.item)
+			  # Efecto visual
+			show_harvest_effect()
+			
+			reset_plot()
+		else:
+			if is_planted and not is_ready_to_harvest:
+				print("Planta no está lista para cosechar")
+			else:
+				print("No hay planta para cosechar")
+			return {}
+		return reward
+func check_growth_stage():
+	# Cambiar etapa visual según progreso
+	var progress = current_growth / growth_time
+	
+	for i in range(growth_stages.size()):
+		if progress >= growth_stages[i] and i > current_stage:
+			current_stage = i
+			update_plant_visual()
+
+func update_plant_visual():
+	# Cambiar la apariencia según la etapa
+	match current_stage:
+		0:
+			plant_visual.modulate = Color(0.5, 0.5, 1.0)  # Azulado - semilla
+		1:
+			plant_visual.modulate = Color(0.7, 1.0, 0.7)  # Verde claro - brote
+		2:
+			plant_visual.modulate = Color(0.9, 1.0, 0.9)  # Verde - crecimiento
+		3:
+			plant_visual.modulate = Color(1.0, 1.0, 1.0)  # Normal - maduro
+
+func on_plant_ready():
+	# Cuando la planta está lista para cosechar
+	plant_visual.modulate = Color(1.0, 1.0, 0.5)  # Amarillo - listo para cosechar
+	print("Planta lista para cosechar en parcela ", parcela_id)
+# Añade esta función para feedback visual al cosechar
+func show_harvest_effect():
+	# Crear partículas simples o animación
+	var harvest_tween = create_tween()
+	plant_visual.scale = Vector2(1.2, 1.2)
+	harvest_tween.tween_property(plant_visual, "scale", Vector2(1.0, 1.0), 0.3)
+
+func reset_plot():
+	# Reiniciar toda la parcela a estado vacío
+	is_planted = false
+	current_plant_id = ""
+	is_ready_to_harvest = false
+	current_growth = 0.0
+	current_stage = 0
+	nivel_agua_actual = 100
+	
+	# Resetear visuales
+	plant_visual.visible = false
+	plant_visual.modulate = Color(1.0, 1.0, 1.0)
+	plant_visual.scale = Vector2(1.0, 1.0)  # Resetear escala
+	indicador_agua.visible = false
+	actualizar_visual_agua()
+	
+	print("Parcela ", parcela_id, " reseteda y lista para nueva plantación")
