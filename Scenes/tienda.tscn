@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://f4o3l70wt6b2"]
+
+[ext_resource type="PackedScene" uid="uid://ddsfybcpvc7vb" path="res://Scenes/planta_tienda.tscn" id="1_k64ye"]
+[ext_resource type="Script" path="res://Code/tienda.gd" id="1_ko86m"]
+[ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="2_sruq1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qt5ao"]
+bg_color = Color(1.2995303e-06, 0.39680398, 0.5402355, 1)
+
+[node name="Tienda" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ko86m")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 817.0
+offset_bottom = 417.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08593253, 0.08593253, 0.08593253, 0.43529412)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 152.0
+offset_top = 8.0
+offset_right = 424.0
+offset_bottom = 291.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qt5ao")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 273.0
+offset_bottom = 284.0
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "Tienda de plantas"
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_sruq1")
+theme_override_font_sizes/font_size = 5
+text = "x"
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Plantas" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/Plantas"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 258.0
+offset_bottom = 205.0
+columns = 4
+
+[node name="PlantaTienda" parent="Panel/VBoxContainer/Plantas/GridContainer" instance=ExtResource("1_k64ye")]
+layout_mode = 2
+script = null
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Dinero disponible: "
+
+[node name="MoneyLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "200"

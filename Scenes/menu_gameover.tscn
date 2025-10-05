@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://bli72rev4s3fa"]
+
+[ext_resource type="Script" uid="uid://dbhtit761pa0u" path="res://Code/menu_gameover.gd" id="1_77rgg"]
+[ext_resource type="Texture2D" uid="uid://s5ct6mwhu4t1" path="res://Images/Fondos/Gemini_Generated_Image_gn6n8xgn6n8xgn6n.png" id="2_ehxng"]
+[ext_resource type="Texture2D" uid="uid://badnpw4nco8q5" path="res://Images/moneda.png" id="2_ligyw"]
+[ext_resource type="FontFile" uid="uid://diq2md7qmxg7l" path="res://fonts/Montserrat/static/Montserrat-BlackItalic.ttf" id="4_2d2vi"]
+
+[node name="Menu-Gameover" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_77rgg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ehxng")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="game" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2d2vi")
+theme_override_font_sizes/font_size = 35
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Profit" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2d2vi")
+theme_override_font_sizes/font_size = 28
+text = "PROFIT:
+"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/Profit"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 32.0
+offset_right = 507.0
+offset_bottom = 544.0
+scale = Vector2(0.06135044, 0.0669454)
+texture = ExtResource("2_ligyw")
+expand_mode = 1
+
+[node name="Money" type="Label" parent="VBoxContainer2/Profit"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 33.0
+offset_right = 166.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+
+[node name="Botones" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="PLAY" type="Button" parent="MarginContainer/Botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2d2vi")
+text = "Volver a jugar"
+
+[node name="Salir" type="Button" parent="MarginContainer/Botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2d2vi")
+text = "Salir"
+
+[connection signal="pressed" from="MarginContainer/Botones/PLAY" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/Botones/Salir" to="." method="_on_salir_pressed"]

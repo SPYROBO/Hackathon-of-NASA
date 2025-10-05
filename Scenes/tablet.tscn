@@ -1,0 +1,197 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsxmsvjxlrd6b"]
+
+[ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_2jhf0"]
+[ext_resource type="Script" uid="uid://d0ws0g53nkonq" path="res://Code/tablet.gd" id="1_6bwlg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jhf0"]
+bg_color = Color(2.117753e-06, 0.62966627, 0.9800913, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Tablet" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bwlg")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 667.0
+offset_bottom = 261.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08593253, 0.08593253, 0.08593253, 0.43529412)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 9.0
+offset_right = 458.0
+offset_bottom = 267.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jhf0")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 14
+text = "Tablet"
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 6
+text = "x"
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 257.0
+offset_bottom = 139.0
+
+[node name="Panel_Parcela_1" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 17.0
+offset_right = 92.0
+offset_bottom = 67.0
+
+[node name="Panel_Parcela_2" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 17.0
+offset_right = 142.0
+offset_bottom = 67.0
+
+[node name="Panel_Parcela_3" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 17.0
+offset_right = 192.0
+offset_bottom = 67.0
+
+[node name="Panel_Parcela_4" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 17.0
+offset_right = 242.0
+offset_bottom = 67.0
+
+[node name="Panel_Parcela_5" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 78.0
+offset_right = 92.0
+offset_bottom = 128.0
+
+[node name="Panel_Parcela_6" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 78.0
+offset_right = 142.0
+offset_bottom = 128.0
+
+[node name="Panel_Parcela_7" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 78.0
+offset_right = 192.0
+offset_bottom = 128.0
+
+[node name="Panel_Parcela_8" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 78.0
+offset_right = 242.0
+offset_bottom = 128.0
+
+[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 156.0
+offset_right = 281.0
+offset_bottom = 237.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control2"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 3.0
+offset_right = 244.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 17
+text = "Información satelital"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control2"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 52.0
+offset_right = 54.0
+offset_bottom = 69.0
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 13
+text = "Humedad.Prom:"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control2"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 30.0
+offset_right = 54.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 13
+text = "Temp.Prom:"
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control2"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 52.0
+offset_right = 202.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 13
+text = "Precipitación:"
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Control2"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 30.0
+offset_right = 197.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("1_2jhf0")
+theme_override_font_sizes/font_size = 13
+text = "Vientos:"
+
+[node name="Line2D" type="Line2D" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+position = Vector2(-2.1042466, 9)
+scale = Vector2(1.100386, 1)
+points = PackedVector2Array(12, 143, 194.5, 143, 269, 143)
+width = 1.0
+default_color = Color(1, 1, 1, 0.20784314)

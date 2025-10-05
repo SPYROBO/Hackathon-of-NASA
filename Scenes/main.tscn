@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0pvem35dq2k"]
+
+[ext_resource type="PackedScene" uid="uid://b2u0qfsldi58r" path="res://Scenes/map.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bcm3y3dpf3rxw" path="res://Scenes/SideBarPanel.tscn" id="2_8gbba"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Mapa" parent="." instance=ExtResource("1_bo1nx")]
+position = Vector2(113.56447, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(241, 135)
+
+[node name="IU_layer" type="CanvasLayer" parent="."]
+
+[node name="SideBarPanel" parent="IU_layer" instance=ExtResource("2_8gbba")]
+scale = Vector2(0.794, 0.904)
+
+[node name="space" type="Control" parent="IU_layer/SideBarPanel"]
+anchors_preset = 0
+size_flags_vertical = 3

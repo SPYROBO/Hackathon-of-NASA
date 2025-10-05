@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddsfybcpvc7vb"]
+
+[ext_resource type="Script" path="res://Code/planta_tienda.gd" id="1_ay8iy"]
+[ext_resource type="Texture2D" uid="uid://lsh76wnjpd4y" path="res://Images/plantas/morron.png" id="2_ay8iy"]
+[ext_resource type="Texture2D" uid="uid://bp7mye8yus8n1" path="res://icons/sol.png" id="2_xarbe"]
+[ext_resource type="Texture2D" uid="uid://crmduec10tutt" path="res://icons/gota.png" id="3_kanch"]
+[ext_resource type="Texture2D" uid="uid://ktjlivmsdemw" path="res://icons/relox.png" id="4_ay8iy"]
+[ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="5_kanch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ivmj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45882353, 0.45882353, 0.45882353, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mge5m"]
+bg_color = Color(0.3007, 0.8696051, 0.97, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8o5lj"]
+bg_color = Color(5.968213e-06, 0.60670346, 0.84274435, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay8iy"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kanch"]
+bg_color = Color(0.25500003, 0.85, 0.29466665, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[node name="PlantaTienda" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(57, 69)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -423.0
+offset_bottom = -201.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ay8iy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ivmj")
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 49.0
+offset_bottom = 43.0
+
+[node name="Panel" type="Panel" parent="Panel/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mge5m")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer/Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+texture = ExtResource("2_ay8iy")
+expand_mode = 1
+
+[node name="PanelContainer" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 12.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8o5lj")
+
+[node name="Price" type="Label" parent="Panel/PanelContainer"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 7.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("5_kanch")
+theme_override_font_sizes/font_size = 6
+text = "$3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 45.0
+offset_right = -7.0
+offset_bottom = 57.0
+grow_horizontal = 2
+
+[node name="Sol" type="TextureRect" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_xarbe")
+expand_mode = 1
+
+[node name="Agua" type="TextureRect" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_kanch")
+expand_mode = 1
+
+[node name="Tiempo" type="TextureRect" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_ay8iy")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer2/Tiempo"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 11.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ay8iy")
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer2/Tiempo"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 13.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kanch")
+theme_override_font_sizes/font_size = 6
+text = "2"
+
+[node name="Buy" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 59.0
+offset_right = 42.0
+offset_bottom = 67.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4627451)
+theme_override_fonts/font = ExtResource("5_kanch")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanch")
+text = "Comprar"

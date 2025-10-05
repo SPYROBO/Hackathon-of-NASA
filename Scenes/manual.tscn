@@ -1,0 +1,283 @@
+[gd_scene load_steps=5 format=3 uid="uid://38wg7v4q1j5k"]
+
+[ext_resource type="FontFile" uid="uid://dvmia7jpiwn6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_4f0et"]
+[ext_resource type="Script" uid="uid://sk7yrdrc0218" path="res://Code/manual.gd" id="1_13vcq"]
+[ext_resource type="Texture2D" uid="uid://diut3lg2harxu" path="res://Images/manual/mission.png" id="3_6qgg0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kn83k"]
+bg_color = Color(0.14984226, 0.4835117, 0.75831634, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Manual" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 478.0
+offset_bottom = 273.0
+script = ExtResource("1_13vcq")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 453.0
+offset_bottom = 261.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08593253, 0.08593253, 0.08593253, 0.43529412)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -125.5
+offset_right = 215.0
+offset_bottom = 142.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kn83k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "Manual de juego"
+
+[node name="CloseButton" type="Button" parent="MainPanel/VBoxContainer/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 5
+text = "x"
+
+[node name="Control" type="Control" parent="MainPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ManualTabContainer" type="TabContainer" parent="MainPanel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 10
+current_tab = 0
+
+[node name="HowToPlayTab" type="Control" parent="MainPanel/VBoxContainer/ManualTabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 281.0
+offset_bottom = 157.0
+theme_override_constants/separation = 13
+
+[node name="MissionContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/MissionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 14
+text = "YOUR MISSION"
+
+[node name="mission_btn" type="Button" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/MissionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 11
+text = "Mission"
+
+[node name="tablet_btn" type="Button" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/MissionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 11
+text = "Tablet"
+
+[node name="shop_btn" type="Button" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/MissionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 11
+text = "Shop"
+
+[node name="modo_btn" type="Button" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/MissionContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 11
+text = "Actions"
+
+[node name="ControlsContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ImageAspectContainers" type="AspectRatioContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/ControlsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+ratio = 1.4854
+
+[node name="ReportImage" type="TextureRect" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/ControlsContainer/ImageAspectContainers"]
+layout_mode = 2
+texture = ExtResource("3_6qgg0")
+expand_mode = 1
+
+[node name="AlertLabel" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/HBoxContainer/ControlsContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 11
+text = "Mission"
+
+[node name="KeyConceptsContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 164.0
+offset_right = 284.0
+offset_bottom = 218.0
+
+[node name="MainConceptLabel" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab/KeyConceptsContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 9
+text = "texto"
+autowrap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="MainPanel/VBoxContainer/ManualTabContainer/HowToPlayTab"]
+position = Vector2(-1, -16)
+points = PackedVector2Array(10, 177, 281, 177)
+width = 1.0
+default_color = Color(1, 1, 1, 0.25882354)
+
+[node name="NasData" type="Control" parent="MainPanel/VBoxContainer/ManualTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 276.0
+offset_bottom = 220.0
+
+[node name="DataContentContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 13
+text = "DATOS CLIMÁTICOS DE NASA POWER"
+horizontal_alignment = 1
+
+[node name="SourceLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_font_sizes/italics_font_size = 5
+bbcode_enabled = true
+text = "[i]Fuente: Plataforma NASA Prediction Of Worldwide Energy Resources (POWER).[/i]"
+fit_content = true
+scroll_active = false
+
+[node name="IntroLabel" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+theme_override_font_sizes/font_size = 9
+text = "
+Los datos son un promedio semanal de un mes aleatorio del ultimo año para la ubicación de tu granja."
+autowrap_mode = 2
+
+[node name="T2MLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_4f0et")
+theme_override_font_sizes/normal_font_size = 9
+text = "-Temperatura Promedio (T2M):Determina la velocidad que crece de la planta según su tolerancia al sol. Los umbrales clave son: FRÍO (< 10.0 °C), TEMPLADO (10.0 °C - 25.0 °C), y CÁLIDO (> 25.0 °C)."
+fit_content = true
+scroll_active = false
+
+[node name="RH2MLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_4f0et")
+theme_override_font_sizes/normal_font_size = 9
+text = "-Humedad Relativa (RH2M): Porcentaje de vapor de agua en el aire (%). Afecta directamente la velocidad de evaporación del suelo. Los umbrales clave son: POCA Humedad (< 40.0 %) y Mucha Humedad (≥ 40.0 %)."
+fit_content = true
+scroll_active = false
+
+[node name="PrecipLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_4f0et")
+theme_override_font_sizes/normal_font_size = 9
+text = "- Precipitación Total (PRECTOTCORR): Lluvia total caída en milímetros (mm)."
+fit_content = true
+scroll_active = false
+
+[node name="WS2MLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/NasData/MarginContainer/DataContentContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_4f0et")
+theme_override_font_sizes/normal_font_size = 9
+text = "- Viento (WS2M): Velocidad del viento a 2 metros del suelo en metros por segundo (m/s)."
+fit_content = true
+scroll_active = false
+
+[node name="PlayerStoryTab" type="Control" parent="MainPanel/VBoxContainer/ManualTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/PlayerStoryTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -10.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/ManualTabContainer/PlayerStoryTab/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/ManualTabContainer/PlayerStoryTab/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4f0et")
+text = "Tu mision"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainPanel/VBoxContainer/ManualTabContainer/PlayerStoryTab/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_4f0et")
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 11
+theme_override_font_sizes/italics_font_size = 9
+theme_override_font_sizes/mono_font_size = 9
+bbcode_enabled = true
+text = "Siempre has sido el prodigio tecnológico de la familia. Mientras tu abuelo araba la tierra a la vieja usanza, tú estabas inmerso en datos satelitales y algoritmos.Tras heredar la granja, te enfrentas a una realidad rural que te es completamente ajena. No sabes nada de cultivos ni de cosechas. Afortunadamente, tienes un plan: usar tu talento tecnológico para crear una Tablet de Agricultura de Precisión conectada directamente a los datos climáticos de la NASA, convirtiendo así el trabajo duro en información inteligente.
+
+Una vez instalado, descubres la verdad: la granja familiar no solo está descuidada, sino que está endeudada. Tu abuelo se quedó atrás, y la falta de modernización generó un déficit insostenible. Ahora debes generar una ganancia neta de $1000 antes de que termine el mes (tienes cuatro semanas). Si no consigues el dinero, perderás la granja y el legado de tu familia. Analiza el clima, siembra con inteligencia y demuestra que el futuro de la agricultura está en tus manos... ¡o en tu tablet!"
